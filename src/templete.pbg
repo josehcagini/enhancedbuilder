@@ -1,0 +1,19 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "src\\templete.pbl" "";
+@end;
+@begin Objects
+ "src\\n_templete_connectservice.sru" "src\\templete.pbl";
+ "src\\m_templete_frame.srm" "src\\templete.pbl";
+ "src\\w_templete_frame.srw" "src\\templete.pbl";
+ "src\\m_templete_sheet.srm" "src\\templete.pbl";
+ "src\\p_templete_exe.srj" "src\\templete.pbl";
+ "src\\w_templete_about.srw" "src\\templete.pbl";
+ "src\\templete.sra" "src\\templete.pbl";
+ "src\\w_templete_basesheet.srw" "src\\templete.pbl";
+ "src\\n_templete_sheetmanager.sru" "src\\templete.pbl";
+ "src\\w_templete_sheet1.srw" "src\\templete.pbl";
+ "src\\w_templete_sheet2.srw" "src\\templete.pbl";
+ "src\\w_templete_toolbars.srw" "src\\templete.pbl";
+ "src\\w_templete_sheet3.srw" "src\\templete.pbl";
+@end;
