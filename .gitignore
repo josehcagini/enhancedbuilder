@@ -1,4 +1,5 @@
 scc_storage/*
+storage/*
 *.env.ini
 *.pbc
 *.opt
