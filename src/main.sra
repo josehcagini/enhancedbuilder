@@ -32,9 +32,20 @@ destroy(error)
 destroy(message)
 end on
 
-event open;
-Long ll_1 = 1, ll_2 = 2
+event open;queryBuilder u_queryBuilder 
+u_queryBuilder = Create queryBuilder
 
-ll_2 = ll_1 + ll_2
+classdefinition lcd
+lcd = u_queryBuilder.classdefinition
+
+//PBDOM_ELEMENT pbdom_elem_1
+//PBDOM_ELEMENT pbdom_elem_2 
+//
+//pbdom_elem_1 = Create PBDOM_ELEMENT
+//pbdom_elem_2 = Create PBDOM_ELEMENT 
+//
+//pbdom_elem_1.SetName("pbdom_elem_1")
+//pbdom_elem_2.SetName("pbdom_elem_2")
+//pbdom_elem_1.AddContent(pbdom_elem_2)
 end event
 
