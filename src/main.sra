@@ -32,6 +32,11 @@ destroy(error)
 destroy(message)
 end on
 
-event open;MessageBox('Teste', 'teste uga')
+event open;u_process gu_process
+gu_process = Create u_process
+
+string ls_teste
+ls_teste = gu_process.env('env_teste', '')
+
 end event
 

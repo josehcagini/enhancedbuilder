@@ -1,0 +1,7 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "src\\config.pbl" "";
+@end;
+@begin Objects
+ "src\\u_process.sru" "src\\config.pbl";
+@end;
