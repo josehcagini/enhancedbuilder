@@ -32,11 +32,9 @@ destroy(error)
 destroy(message)
 end on
 
-event open;u_process gu_process
-gu_process = Create u_process
+event open;
+Long ll_1 = 1, ll_2 = 2
 
-string ls_teste
-ls_teste = gu_process.env('env_teste', '')
-
+ll_2 = ll_1 + ll_2
 end event
 

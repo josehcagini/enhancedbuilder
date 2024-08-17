@@ -5,4 +5,5 @@ Save Format v3.0(19990112)
 @begin Objects
  "src\\u_database.sru" "src\\database.pbl";
  "src\\u_transaction.sru" "src\\database.pbl";
+ "src\\querybuilder.sru" "src\\database.pbl";
 @end;
