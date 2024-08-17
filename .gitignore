@@ -6,8 +6,8 @@ storage/*
 *.srm
 *.srj
 
-#*.pbt
-#*.pbl
+# *.pbt
+*.pbl
 
 #Ignore thumbnails created by Windows
 Thumbs.db
