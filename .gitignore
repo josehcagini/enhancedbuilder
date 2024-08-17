@@ -1,11 +1,12 @@
 scc_storage/*
-*.ini
-*.pbl
+*.env.ini
 *.pbc
 *.opt
-*.pbt
 *.srm
 *.srj
+
+#*.pbt
+#*.pbl
 
 #Ignore thumbnails created by Windows
 Thumbs.db
