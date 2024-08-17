@@ -8,6 +8,9 @@ global type querybuilder from nonvisualobject
 end type
 global querybuilder querybuilder
 
+type prototypes
+
+end prototypes
 on querybuilder.create
 call super::create
 TriggerEvent( this, "constructor" )
