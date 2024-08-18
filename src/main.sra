@@ -14,11 +14,13 @@ global variables
 __init__ _init_
 _object __object
 _static __static
+console __console
 
 CONSTANT STRING __ISSINGLETON = 'ISSINGLETON'
 CONSTANT STRING __ISSTATIC = 'ISSTATIC'
 CONSTANT STRING __PRIVATECONSTRUCTOR = 'PRIVATECONSTRUCTOR'
 end variables
+
 shared variables
 
 end variables
@@ -27,6 +29,13 @@ global type main from application
 string appname = "main"
 end type
 global main main
+
+forward prototypes
+public subroutine of_destroy ()
+end prototypes
+
+public subroutine of_destroy ();//
+end subroutine
 
 on main.create
 appname="main"
@@ -46,29 +55,18 @@ destroy(message)
 end on
 
 event open;
-_init_ = CREATE __init__
-__static = _init_._static()
-__static.set__init__(_init_)
-__object = _init_._object()
-__static.set_object(__object)
-
-
-ClassDefinition temp_ClassDef
-VariableDefinition temp_VariableList[]
-
-temp_ClassDef = FindClassDefinition('__init__')
-temp_VariableList = temp_ClassDef.variablelist
-
-long var_index 
-for var_index = 1 to UpperBound(temp_VariableList)
-	VariableDefinition index_VariableList
-	index_VariableList = temp_VariableList[var_index]
-	index_VariableList.name 
-end for
-
-temp_ClassDef = FindClassDefinition('__static')
-temp_ClassDef = FindClassDefinition('__object')
-
-
+Try
+	_init_ = CREATE __init__
+	__console = CREATE console
+	__static = _init_._static()
+	__static.set__init__(_init_)
+	__object = _init_._object()
+	__static.set_object(__object)
+	
+Catch( PrivateConstructorExcept err)
+	__console.log(err.GetMessage())
+Finally
+	this.of_destroy()
+End Try
 end event
 

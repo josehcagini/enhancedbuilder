@@ -1,0 +1,7 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "src\\error.pbl" "";
+@end;
+@begin Objects
+ "src\\privateconstructorexcept.sru" "src\\error.pbl";
+@end;

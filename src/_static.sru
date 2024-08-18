@@ -9,6 +9,7 @@ boolean isStatic = TRUE
 boolean isSingleton = TRUE
 boolean privateConstructor = TRUE
 end variables
+
 global type _static from nonvisualobject
 end type
 global _static _static
@@ -17,6 +18,7 @@ type variables
 __init__ init
 _object object
 end variables
+
 forward prototypes
 public function __init__ __init__ ()
 public subroutine set__init__ (ref __init__ a_pwo)

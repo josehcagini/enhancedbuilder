@@ -11,6 +11,7 @@ global querybuilder querybuilder
 type prototypes
 
 end prototypes
+
 on querybuilder.create
 call super::create
 TriggerEvent( this, "constructor" )

@@ -9,6 +9,7 @@ boolean isStatic = TRUE
 boolean isSingleton = TRUE
 boolean privateConstructor = TRUE
 end variables
+
 global type _object from nonvisualobject
 end type
 global _object _object

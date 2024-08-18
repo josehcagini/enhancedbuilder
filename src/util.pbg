@@ -5,4 +5,5 @@ Save Format v3.0(19990112)
 @begin Objects
  "src\\rootdirname.srf" "src\\util.pbl";
  "src\\_object.sru" "src\\util.pbl";
+ "src\\console.sru" "src\\util.pbl";
 @end;
