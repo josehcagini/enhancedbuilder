@@ -23,6 +23,7 @@ constructor_parm _constructor_parm
 
 _map instance_map
 end variables
+
 forward prototypes
 public subroutine set_object (ref _object a_object)
 public subroutine instantiate ()
@@ -33,6 +34,7 @@ public subroutine send_constructor_parm (powerobject str_parm)
 public subroutine set_process (u_process a_process)
 public function powerobject getinstance (string class)
 public subroutine createinstancemap ()
+public function powerobject get_constructor_parm ()
 end prototypes
 
 public subroutine set_object (ref _object a_object);object = a_object
@@ -90,6 +92,9 @@ Catch(PrivateConstructorExcept err)
 
 End Try
 end subroutine
+
+public function powerobject get_constructor_parm ();return this._constructor_parm.PowerObjectParm
+end function
 
 on _static.create
 call super::create

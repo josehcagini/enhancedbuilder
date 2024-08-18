@@ -1,0 +1,13 @@
+HA$PBExportHeader$isfalsy.srf
+global type isfalsy from function_object
+end type
+
+forward prototypes
+global function boolean isfalsy (any value)
+end prototypes
+
+global function boolean isfalsy (any value);
+
+return true
+end function
+

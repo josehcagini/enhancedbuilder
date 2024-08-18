@@ -4,4 +4,5 @@ Save Format v3.0(19990112)
 @end;
 @begin Objects
  "src\\__init__.sru" "src\\constructor.pbl";
+ "src\\str_u_transaction_parm.srs" "src\\constructor.pbl";
 @end;

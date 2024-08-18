@@ -34,8 +34,20 @@ try
 	_databasemanager = __static.getInstance('databasemanager')
 	_databasemanager.setDefaultSGDB(ls_db_sgdb)
 	_database = __static.getInstance(_databasemanager.getDefaultTypeSgdb())
-	//_database.createTransaction()
 	
+	_databasemanager.AddTransaction( &
+		_databasemanager.getDefaultTypeSgdb(), &
+		_databasemanager.getDefaultKey(), &
+		_database.createTransaction( &
+			ls_db_dbms, &
+			ls_db_sgdb, &
+			ls_db_database, &
+			ls_db_userid, &
+			ls_db_dsn, &
+			ls_db_lock, &
+			ls_db_autocommit &
+		) &
+	)
 catch(PrivateConstructorExcept err)
 end try
 

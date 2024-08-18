@@ -9,10 +9,10 @@ end type
 global u_database u_database
 
 forward prototypes
-public function u_transaction createtransaction ()
+public function u_transaction createtransaction (string a_db_dbms, string a_db_sgdb, string a_db_database, string a_db_userid, string a_db_dsn, string a_db_lock, string a_db_autocommit)
 end prototypes
 
-public function u_transaction createtransaction ();
+public function u_transaction createtransaction (string a_db_dbms, string a_db_sgdb, string a_db_database, string a_db_userid, string a_db_dsn, string a_db_lock, string a_db_autocommit);
 //implements on descendants
 u_transaction t
 return t
