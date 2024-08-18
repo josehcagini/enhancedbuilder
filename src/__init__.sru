@@ -20,10 +20,12 @@ end variables
 
 forward prototypes
 public function boolean isprivateconstructor (string as_classname)
-public function powerobject class (string classname) throws privateconstructorexcept
 public function _object _object ()
 public function _static _static ()
 public function console console ()
+public function constructor_parm constructor_parm ()
+public function powerobject class (string classname, powerobject str_parm) throws privateconstructorexcept
+public function u_process _process ()
 end prototypes
 
 public function boolean isprivateconstructor (string as_classname);ClassDefinition classDef
@@ -39,16 +41,6 @@ For index = 1 To UpperBound(classDef.variableList)
 Next
 
 return FALSE
-end function
-
-public function powerobject class (string classname) throws privateconstructorexcept;
-powerobject new_object
-if this.IsPrivateConstructor(classname) then 
-	Throw CREATE PrivateConstructorExcept
-end if
-new_object = CREATE USING classname
-return new_object 
-
 end function
 
 public function _object _object ();
@@ -70,6 +62,31 @@ if not isValid(__console) Then
 	__console = CREATE console
 End If
 return __console
+end function
+
+public function constructor_parm constructor_parm ();
+constructor_parm new_constructor_parm
+new_constructor_parm = CREATE constructor_parm 
+return new_constructor_parm
+end function
+
+public function powerobject class (string classname, powerobject str_parm) throws privateconstructorexcept;
+powerobject new_object
+if this.IsPrivateConstructor(classname) then 
+	Throw CREATE PrivateConstructorExcept
+end if
+
+__static.send_constructor_parm(str_parm)
+new_object = CREATE USING classname
+return new_object 
+
+end function
+
+public function u_process _process ();
+if not isValid(__process) Then
+	__process = CREATE u_process
+End If
+return __process
 end function
 
 on __init__.create

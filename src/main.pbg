@@ -3,5 +3,8 @@ Save Format v3.0(19990112)
  "src\\main.pbl" "";
 @end;
 @begin Objects
+ "src\\_app.sru" "src\\main.pbl";
+ "src\\constructor_parm.sru" "src\\main.pbl";
+ "src\\ancobject.sru" "src\\main.pbl";
  "src\\main.sra" "src\\main.pbl";
 @end;

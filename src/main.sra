@@ -15,12 +15,13 @@ __init__ _init_
 _object __object
 _static __static
 console __console
+u_process __process
+powerobject NULL_OBJ
 
 CONSTANT STRING __ISSINGLETON = 'ISSINGLETON'
 CONSTANT STRING __ISSTATIC = 'ISSTATIC'
 CONSTANT STRING __PRIVATECONSTRUCTOR = 'PRIVATECONSTRUCTOR'
 end variables
-
 shared variables
 
 end variables
@@ -31,12 +32,9 @@ end type
 global main main
 
 forward prototypes
-public subroutine of_destroy ()
 public subroutine createstatic ()
+public function integer startapp ()
 end prototypes
-
-public subroutine of_destroy ();//
-end subroutine
 
 public subroutine createstatic ();Try
 	_init_ = CREATE __init__
@@ -45,9 +43,20 @@ public subroutine createstatic ();Try
 Catch( PrivateConstructorExcept err)
 	__console.log(err.GetMessage())
 Finally
-	this.of_destroy()
+	
 End Try
 end subroutine
+
+public function integer startapp ();Try
+	_app main_app
+	
+	main_app = _init_.class('_app', NULL_OBJ)
+Catch( PrivateConstructorExcept err)
+	__console.log('')
+End Try
+
+return 1
+end function
 
 on main.create
 appname="main"
@@ -67,5 +76,7 @@ destroy(message)
 end on
 
 event open;this.createStatic()
+
+this.startApp()
 end event
 
