@@ -28,6 +28,17 @@ ls_db_dsn = __process.env('db_dsn', '')
 ls_db_lock = __process.env('db_lock', '')
 ls_db_autocommit = __process.env('db_autocommit', '')
 
+databasemanager _databasemanager
+u_database _database
+try 
+	_databasemanager = __static.getInstance('databasemanager')
+	_databasemanager.setDefaultSGDB(ls_db_sgdb)
+	_database = __static.getInstance(_databasemanager.getDefaultTypeSgdb())
+	//_database.createTransaction()
+	
+catch(PrivateConstructorExcept err)
+end try
+
 return 1
 end function
 

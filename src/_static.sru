@@ -21,9 +21,8 @@ console _console
 u_process _process
 constructor_parm _constructor_parm
 
-powerobject static_obj_list[]
+_map instance_map
 end variables
-
 forward prototypes
 public subroutine set_object (ref _object a_object)
 public subroutine instantiate ()
@@ -33,6 +32,7 @@ public subroutine set_constructor_parm (constructor_parm a_constructor)
 public subroutine send_constructor_parm (powerobject str_parm)
 public subroutine set_process (u_process a_process)
 public function powerobject getinstance (string class)
+public subroutine createinstancemap ()
 end prototypes
 
 public subroutine set_object (ref _object a_object);object = a_object
@@ -71,11 +71,25 @@ end subroutine
 
 public function powerobject getinstance (string class);
 powerobject static_obj
-
+static_obj = instance_map.get(class)
+if __object.isNotValid(static_obj) Then
+	try
+		static_obj = this.init.class(class, NULL_OBJ)
+	catch( PrivateConstructorExcept err)
+	end try
+	instance_map.set(class, static_obj)
+end if
 
 return static_obj
 
 end function
+
+public subroutine createinstancemap ();Try
+	instance_map = _init_.class('_map', NULL_OBJ)
+Catch(PrivateConstructorExcept err)
+
+End Try
+end subroutine
 
 on _static.create
 call super::create
@@ -86,4 +100,8 @@ on _static.destroy
 TriggerEvent( this, "destructor" )
 call super::destroy
 end on
+
+event constructor;createInstanceMap()
+
+end event
 

@@ -52,6 +52,7 @@ end function
 
 public function _static _static ();
 if not isValid(__static) Then
+	setNull(NULL_OBJ)
 	__static = CREATE _static
 End If
 return __static

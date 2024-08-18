@@ -5,6 +5,7 @@ Save Format v3.0(19990112)
 @begin Objects
  "src\\_ds.sru" "src\\database.pbl";
  "src\\u_transactionpostgres.sru" "src\\database.pbl";
+ "src\\databasemanager.sru" "src\\database.pbl";
  "src\\u_database.sru" "src\\database.pbl";
  "src\\u_transaction.sru" "src\\database.pbl";
  "src\\transactionfactory.sru" "src\\database.pbl";

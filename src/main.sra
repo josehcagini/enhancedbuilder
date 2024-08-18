@@ -22,6 +22,7 @@ CONSTANT STRING __ISSINGLETON = 'ISSINGLETON'
 CONSTANT STRING __ISSTATIC = 'ISSTATIC'
 CONSTANT STRING __PRIVATECONSTRUCTOR = 'PRIVATECONSTRUCTOR'
 end variables
+
 shared variables
 
 end variables
@@ -41,8 +42,6 @@ public subroutine createstatic ();Try
 	__static = _init_._static()
 	__static.instantiate()
 Catch( PrivateConstructorExcept err)
-	__console.log(err.GetMessage())
-Finally
 	
 End Try
 end subroutine
@@ -53,7 +52,7 @@ public function integer startapp ();Try
 	main_app = _init_.class('_app', NULL_OBJ)
 	main_app.startApp()
 Catch( PrivateConstructorExcept err)
-	__console.log('')
+
 End Try
 
 return 1

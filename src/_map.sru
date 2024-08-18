@@ -16,6 +16,7 @@ end variables
 forward prototypes
 public function _map set (string key, powerobject value)
 public subroutine create_ds_map ()
+public function powerobject get (string key)
 end prototypes
 
 public function _map set (string key, powerobject value);
@@ -45,11 +46,29 @@ end function
 
 public subroutine create_ds_map ();Try
 	ds_map = __init__.class('_ds', NULL_OBJ)
-	ds_map.createFromSql("select cast('' as char(30)) as key, cast('' as char(30)) as type, cast(0 as integer) as index from public.dummy")
+	ds_map.createFromSql("select cast('' as char(30)) as key, cast('' as char(30)) as type, cast(0 as integer) as index from public.dummy", SQLCA)
 Catch( PrivateConstructorExcept err)
 
 End Try
 end subroutine
+
+public function powerobject get (string key);
+long findKey, findIndex
+string ls_type = 'obj'
+powerobject lpwo
+
+findKey = ds_map.Find(" key = '" + key + "' and type = '" + ls_type + "'" )
+if findKey > 0 then
+	findIndex = ds_map.GetItem(findKey, 'index', 0)
+	if findIndex > 0 then 
+		lpwo = arrObj[findIndex]
+	end if
+end if
+
+return lpwo 
+
+
+end function
 
 on _map.create
 call super::create

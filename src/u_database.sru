@@ -8,8 +8,15 @@ global type u_database from nonvisualobject
 end type
 global u_database u_database
 
-event constructor;this.classdefinition  
-end event
+forward prototypes
+public function u_transaction createtransaction ()
+end prototypes
+
+public function u_transaction createtransaction ();
+//implements on descendants
+u_transaction t
+return t
+end function
 
 on u_database.create
 call super::create
