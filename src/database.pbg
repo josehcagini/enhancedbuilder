@@ -9,5 +9,6 @@ Save Format v3.0(19990112)
  "src\\u_transaction.sru" "src\\database.pbl";
  "src\\transactionfactory.sru" "src\\database.pbl";
  "src\\querybuilder.sru" "src\\database.pbl";
+ "src\\_dsfactory.sru" "src\\database.pbl";
  "src\\u_database_postgres.sru" "src\\database.pbl";
 @end;

@@ -23,6 +23,7 @@ constructor_parm _constructor_parm
 
 powerobject static_obj_list[]
 end variables
+
 forward prototypes
 public subroutine set_object (ref _object a_object)
 public subroutine instantiate ()

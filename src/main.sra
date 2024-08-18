@@ -52,6 +52,7 @@ public function integer startapp ();Try
 	_app main_app
 	
 	main_app = _init_.class('_app', NULL_OBJ)
+	main_app.startApp()
 Catch( PrivateConstructorExcept err)
 	__console.log('')
 End Try

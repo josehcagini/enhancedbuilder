@@ -28,7 +28,23 @@ ls_db_dsn = __process.env('db_dsn', '')
 ls_db_lock = __process.env('db_lock', '')
 ls_db_autocommit = __process.env('db_autocommit', '')
 
+// Profile pgsqlsample
+SQLCA.DBMS = "ODBC"
+SQLCA.AutoCommit = False
+SQLCA.DBParm = "ConnectString='DSN=PostgreSQL35W;UID=postgres;PWD=postgres'"
+connect using SQLCA;
 
+datastore ds_teste
+ds_teste = create datastore
+ds_teste.SetTransObject(SQLCA)
+
+_ds lds
+lds = create _ds
+lds.SetTransObject(SQLCA)
+lds.createFromSQL("select cast('' as char(30)) as key, cast('' as char(30)) as type, cast(0 as integer) as index from public.dummy")
+lds.InsertRow(0)
+lds.SetItem(1, 'index', 1)
+lds.GetItem(1, 'index', 0)
 
 return 1
 end function
