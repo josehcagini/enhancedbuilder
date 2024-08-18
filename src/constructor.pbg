@@ -1,0 +1,7 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "src\\constructor.pbl" "";
+@end;
+@begin Objects
+ "src\\__init__.sru" "src\\constructor.pbl";
+@end;
