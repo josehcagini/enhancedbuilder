@@ -40,7 +40,6 @@ end prototypes
 public subroutine createstatic ();Try
 	_init_ = CREATE __init__
 	__static = _init_._static()
-	__static.instantiate()
 Catch( PrivateConstructorExcept err)
 	
 End Try

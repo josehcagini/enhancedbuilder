@@ -15,14 +15,14 @@ end type
 global _object _object
 
 forward prototypes
-public function boolean isvalid (powerobject pwo)
-public function boolean isnotvalid (powerobject pwo)
+public function boolean isnotvalid (powerobject a_pwo2)
+public function boolean _isvalid (powerobject a_pwo)
 end prototypes
 
-public function boolean isvalid (powerobject pwo);Return isValid(pwo)
+public function boolean isnotvalid (powerobject a_pwo2);return not this._isValid(a_pwo2)
 end function
 
-public function boolean isnotvalid (powerobject pwo);return not this.isValid(pwo)
+public function boolean _isvalid (powerobject a_pwo);Return isValid(a_pwo)
 end function
 
 on _object.create

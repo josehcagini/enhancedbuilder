@@ -31,14 +31,27 @@ end prototypes
 public function boolean isprivateconstructor (string as_classname);ClassDefinition classDef
 classDef = FindClassDefinition(as_classname)
 
+if Not IsValid(classDef) then return FALSE
+
+long listNumber 
 long index
-For index = 1 To UpperBound(classDef.variableList)
-	VariableDefinition varDef
-	varDef = classDef.variableList[index]
-	If Upper(varDef.Name) = __PRIVATECONSTRUCTOR Then 
+string varName 
+
+VariableDefinition varList[]
+
+if UpperBound(classDef.variableList) <= 0 then return FALSE
+varList = classDef.variableList
+
+VariableDefinition varDef
+listNumber = UpperBound(varList)
+for index = 1 to listNumber
+	varDef = varList[index]
+	if __object.IsNotValid(varDef) then continue
+	varName = Upper(varDef.Name)
+	if varName = __PRIVATECONSTRUCTOR then 
 		return TRUE
-	End If
-Next
+	end if
+next
 
 return FALSE
 end function
@@ -47,7 +60,7 @@ public function _object _object ();
 if not isValid(__object) Then
 	__object = CREATE _object
 End If
-return __object
+return __object 
 end function
 
 public function _static _static ();

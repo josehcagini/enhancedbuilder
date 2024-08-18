@@ -29,7 +29,7 @@ end prototypes
 
 public function string gettypesgdb (string a_sgdb);
 string ls_return
-choose case a_sgdb
+choose case Upper(a_sgdb)
 	case SGDB_POSTGRES
 		ls_return = CLASS_POSTGRES
 end choose

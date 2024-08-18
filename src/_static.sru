@@ -42,7 +42,6 @@ end subroutine
 
 public subroutine instantiate ();
 this.set__init__(_init_)
-this.set_constructor_parm(_init_.constructor_parm())
 
 __object = _init_._object()
 this.set_object(__object)
@@ -73,6 +72,7 @@ end subroutine
 
 public function powerobject getinstance (string class);
 powerobject static_obj
+class = Lower(class)
 static_obj = instance_map.get(class)
 if __object.isNotValid(static_obj) Then
 	try
@@ -106,7 +106,11 @@ TriggerEvent( this, "destructor" )
 call super::destroy
 end on
 
-event constructor;createInstanceMap()
+event constructor;
+__static = this
+this.set_constructor_parm(_init_.constructor_parm())
+this.instantiate()
+createInstanceMap()
 
 end event
 

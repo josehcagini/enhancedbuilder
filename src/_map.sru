@@ -45,7 +45,7 @@ return this
 end function
 
 public subroutine create_ds_map ();Try
-	ds_map = __init__.class('_ds', NULL_OBJ)
+	ds_map = _init_.class('_ds', NULL_OBJ)
 	ds_map.createFromSql("select cast('' as char(30)) as key, cast('' as char(30)) as type, cast(0 as integer) as index from public.dummy", SQLCA)
 Catch( PrivateConstructorExcept err)
 
