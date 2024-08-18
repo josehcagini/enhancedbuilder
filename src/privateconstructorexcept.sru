@@ -11,6 +11,7 @@ global privateconstructorexcept privateconstructorexcept
 type variables
 
 end variables
+
 on privateconstructorexcept.create
 call super::create
 TriggerEvent( this, "constructor" )

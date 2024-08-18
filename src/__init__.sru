@@ -20,9 +20,10 @@ end variables
 
 forward prototypes
 public function boolean isprivateconstructor (string as_classname)
-public function _object _object () throws privateconstructorexcept
-public function _static _static () throws privateconstructorexcept
-public function powerobject class (string classname)
+public function powerobject class (string classname) throws privateconstructorexcept
+public function _object _object ()
+public function _static _static ()
+public function console console ()
 end prototypes
 
 public function boolean isprivateconstructor (string as_classname);ClassDefinition classDef
@@ -40,33 +41,35 @@ Next
 return FALSE
 end function
 
-public function _object _object () throws privateconstructorexcept;
-_object new_object
-
-if this.IsPrivateConstructor('_object') then 
-	Throw CREATE PrivateConstructorExcept
-end if 
-
-new_object = CREATE _object
-return new_object
-end function
-
-public function _static _static () throws privateconstructorexcept;
-_static new_static
-
-if this.IsPrivateConstructor('_static') then 
+public function powerobject class (string classname) throws privateconstructorexcept;
+powerobject new_object
+if this.IsPrivateConstructor(classname) then 
 	Throw CREATE PrivateConstructorExcept
 end if
-
-new_static = CREATE _static
-return new_static
-end function
-
-public function powerobject class (string classname);
-powerobject new_object
 new_object = CREATE USING classname
 return new_object 
 
+end function
+
+public function _object _object ();
+if not isValid(__object) Then
+	__object = CREATE _object
+End If
+return __object
+end function
+
+public function _static _static ();
+if not isValid(__static) Then
+	__static = CREATE _static
+End If
+return __static
+end function
+
+public function console console ();
+if not isValid(__console) Then
+	__console = CREATE console
+End If
+return __console
 end function
 
 on __init__.create

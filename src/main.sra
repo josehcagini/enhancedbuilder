@@ -32,9 +32,21 @@ global main main
 
 forward prototypes
 public subroutine of_destroy ()
+public subroutine createstatic ()
 end prototypes
 
 public subroutine of_destroy ();//
+end subroutine
+
+public subroutine createstatic ();Try
+	_init_ = CREATE __init__
+	__static = _init_._static()
+	__static.instantiate()
+Catch( PrivateConstructorExcept err)
+	__console.log(err.GetMessage())
+Finally
+	this.of_destroy()
+End Try
 end subroutine
 
 on main.create
@@ -54,19 +66,6 @@ destroy(error)
 destroy(message)
 end on
 
-event open;
-Try
-	_init_ = CREATE __init__
-	__console = CREATE console
-	__static = _init_._static()
-	__static.set__init__(_init_)
-	__object = _init_._object()
-	__static.set_object(__object)
-	
-Catch( PrivateConstructorExcept err)
-	__console.log(err.GetMessage())
-Finally
-	this.of_destroy()
-End Try
+event open;this.createStatic()
 end event
 
