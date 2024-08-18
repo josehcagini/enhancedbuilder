@@ -11,16 +11,61 @@ global _ds _ds
 type variables
 u_transaction i_transaction
 end variables
+
 forward prototypes
-public function _ds createfromsql (string as_sql)
 public function long find (string ls_filter)
 public function any getitem (long row, string col, any default)
 public function string of_describe (string a_string)
 public function integer settransobject (transaction t)
+public function _ds createfromsql (string as_sql, transaction a_trans)
+public function boolean ds_typenumber (string a_type)
+public function boolean ds_typedate (string a_type)
+public function boolean ds_typedatetime (string a_type)
+public function boolean ds_typestring (string a_type)
+public function boolean ds_typetime (string a_type)
 end prototypes
 
-public function _ds createfromsql (string as_sql);
+public function long find (string ls_filter);
+return this.find(ls_filter, 0, this.rowCount())
+end function
+
+public function any getitem (long row, string col, any default);
+string colType
+any al_result
+
+colType = this.of_Describe(col + ".Coltype")
+choose case TRUE 
+	case this.ds_typeNumber(colType)
+		return _coalesce(this.GetItemNumber(row, col), default)
+	case this.ds_typeDate(colType)
+		return _coalesce(this.GetItemDate(row, col), default)
+	case this.ds_typeDateTime(colType)
+		return _coalesce(this.GetItemDateTime(row, col), default)
+	case this.ds_typeTime(colType)
+		return _coalesce(this.GetItemTime(row, col), default)
+	case this.ds_typeString(colType)
+		return _coalesce(this.GetItemString(row, col), default)
+end choose
+
+return default
+end function
+
+public function string of_describe (string a_string);return this.describe(a_string)
+end function
+
+public function integer settransobject (transaction t);
+integer li_return
+li_return = datastore::setTransObject(t)
+
+this.i_transaction = t
+
+return li_return
+end function
+
+public function _ds createfromsql (string as_sql, transaction a_trans);
 string errors, genSyntax
+
+this.SetTransObject(a_trans)
 
 genSyntax = i_transaction.SyntaxFromSql(as_sql, "style(type=grid)", errors)
 
@@ -34,37 +79,19 @@ This.Create(genSyntax)
 return this
 end function
 
-public function long find (string ls_filter);
-return this.find(ls_filter, 0, this.rowCount())
+public function boolean ds_typenumber (string a_type);return _in(Upper(a_type), {'LONG', 'INTEGER'})
 end function
 
-public function any getitem (long row, string col, any default);
-dwobject dwo
-dwo = this.object.__getAtribute(col)
-
-String colType
-colType = this.of_Describe(col + ".Coltype")
-
-dwo.typeof( )
-this.GetItemDate(row, col)
-this.GetItemDateTime(row, col)
-this.GetItemNumber(row, col)
-this.GetItemString(row, col)
-this.GetItemTime(row, col)
-
-return 1
+public function boolean ds_typedate (string a_type);return _in(Upper(a_type), {'DATE'})
 end function
 
-public function string of_describe (string a_string);return this.describe(a_string)
+public function boolean ds_typedatetime (string a_type);return _in(Upper(a_type), {'DATETIME'})
 end function
 
-public function integer settransobject (transaction t);
-integer li_return
-li_return = datastore::setTransObject(t)
+public function boolean ds_typestring (string a_type);return _in(Upper(a_type), {'STRING'})
+end function
 
-this.i_transaction = t
-
-return li_return
+public function boolean ds_typetime (string a_type);return _in(Upper(a_type), {'TIME'})
 end function
 
 on _ds.create

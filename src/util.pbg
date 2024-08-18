@@ -4,7 +4,9 @@ Save Format v3.0(19990112)
 @end;
 @begin Objects
  "src\\rootdirname.srf" "src\\util.pbl";
+ "src\\_coalesce.srf" "src\\util.pbl";
  "src\\_object.sru" "src\\util.pbl";
  "src\\console.sru" "src\\util.pbl";
+ "src\\_in.srf" "src\\util.pbl";
  "src\\_map.sru" "src\\util.pbl";
 @end;

@@ -1,0 +1,7 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "src\\domain.pbl" "";
+@end;
+@begin Objects
+ "src\\d_dummy.srd" "src\\domain.pbl";
+@end;

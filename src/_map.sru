@@ -12,6 +12,7 @@ type variables
 powerobject arrObj[]
 _ds ds_map
 end variables
+
 forward prototypes
 public function _map set (string key, powerobject value)
 public subroutine create_ds_map ()
