@@ -20,6 +20,8 @@ _object object
 console _console
 u_process _process
 constructor_parm _constructor_parm
+
+powerobject static_obj_list[]
 end variables
 forward prototypes
 public subroutine set_object (ref _object a_object)
@@ -29,6 +31,7 @@ public subroutine set__init__ (ref __init__ a_init)
 public subroutine set_constructor_parm (constructor_parm a_constructor)
 public subroutine send_constructor_parm (powerobject str_parm)
 public subroutine set_process (u_process a_process)
+public function powerobject getinstance (string class)
 end prototypes
 
 public subroutine set_object (ref _object a_object);object = a_object
@@ -64,6 +67,14 @@ end subroutine
 
 public subroutine set_process (u_process a_process);this._process = a_process
 end subroutine
+
+public function powerobject getinstance (string class);
+powerobject static_obj
+
+
+return static_obj
+
+end function
 
 on _static.create
 call super::create
