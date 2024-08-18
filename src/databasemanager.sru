@@ -18,6 +18,7 @@ STRING DEFAULT_SGDB
 
 _map transaction_map
 end variables
+
 forward prototypes
 public function string gettypesgdb (string a_sgdb)
 public subroutine setdefaultsgdb (string a_type)

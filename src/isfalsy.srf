@@ -7,7 +7,12 @@ global function boolean isfalsy (any value)
 end prototypes
 
 global function boolean isfalsy (any value);
+if isNull(value) then return true
 
-return true
+if ClassName(value) = 'string' then
+	return lower(value) = 'false' or value = '0' or value = '' or value = 'no'
+end if
+
+return false
 end function
 

@@ -38,8 +38,8 @@ SQLCA.Database = _constructor_parms.db_database
 //SQLCA.LogID = _constructor_parms.
 //SQLCA.LogPass = _constructor_parms.
 //SQLCA.ServerName = _constructor_parms.
-SQLCA.DBParm =  _constructor_parms.db_dbms
+SQLCA.DBParm =  _constructor_parms.db_dbparm
 SQLCA.Lock = _constructor_parms.db_lock
-SQLCA.AutoCommit = Not isFalsy(_constructor_parms.db_autocommit)
+SQLCA.AutoCommit = _constructor_parms.db_autocommit
 end event
 

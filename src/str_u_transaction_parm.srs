@@ -4,8 +4,10 @@ global type str_u_transaction_parm from structure
 	string		db_sgdb
 	string		db_database
 	string		db_userid
+	string		db_pass
 	string		db_dsn
 	string		db_lock
-	string		db_autocommit
+	boolean		db_autocommit
+	string		db_dbparm
 end type
 
