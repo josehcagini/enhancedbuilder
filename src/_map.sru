@@ -44,12 +44,13 @@ return this
 
 end function
 
-public subroutine create_ds_map ();Try
-	ds_map = _init_.class('_ds', NULL_OBJ)
-	ds_map.createFromSql("select cast('' as char(30)) as key, cast('' as char(30)) as type, cast(0 as integer) as index from public.dummy", SQLCA)
-Catch( PrivateConstructorExcept err)
-
-End Try
+public subroutine create_ds_map ();try
+	str_ds_parm _ds_map_parm
+	_ds_map_parm.dataobject = 'd_dsmap'
+	ds_map = _init_.class('_ds', _ds_map_parm)
+catch( PrivateConstructorExcept err)
+	MessageBox('', err.GetMessage())
+end try
 end subroutine
 
 public function powerobject get (string key);

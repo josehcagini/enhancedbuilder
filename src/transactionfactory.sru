@@ -31,8 +31,9 @@ _constructor_parms.db_autocommit = a_db_autocommit
 _constructor_parms.db_dbparm = a_db_dbparm
 
 try 
-	newTransaction = _init_.class( TRANSACTION_POSTGRES, constructor_parm)
+	newTransaction = _init_.class( TRANSACTION_POSTGRES, _constructor_parms)
 catch(PrivateConstructorExcept err)
+	MessageBox('', err.GetMessage())
 end try
 
 return newTransaction 

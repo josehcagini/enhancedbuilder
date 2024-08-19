@@ -86,11 +86,11 @@ return static_obj
 
 end function
 
-public subroutine createinstancemap ();Try
+public subroutine createinstancemap ();try
 	instance_map = _init_.class('_map', NULL_OBJ)
-Catch(PrivateConstructorExcept err)
-
-End Try
+catch(PrivateConstructorExcept err)
+	MessageBox('', err.GetMessage())
+end try
 end subroutine
 
 public function powerobject get_constructor_parm ();return this._constructor_parm.PowerObjectParm

@@ -52,7 +52,11 @@ try
 		) &
 	)
 catch(PrivateConstructorExcept err)
+	MessageBox('', err.GetMessage())
 end try
+
+u_transaction ltrans_teste
+ltrans_teste = _databasemanager.getDefaultTrans()
 
 return 1
 end function

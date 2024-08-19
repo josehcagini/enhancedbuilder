@@ -23,6 +23,7 @@ public function boolean ds_typedate (string a_type)
 public function boolean ds_typedatetime (string a_type)
 public function boolean ds_typestring (string a_type)
 public function boolean ds_typetime (string a_type)
+public function str_ds_parm getconstructorparm ()
 end prototypes
 
 public function long find (string ls_filter);
@@ -94,6 +95,12 @@ end function
 public function boolean ds_typetime (string a_type);return _in(Upper(a_type), {'TIME'})
 end function
 
+public function str_ds_parm getconstructorparm ();
+str_ds_parm str_return
+str_return = __static.get_constructor_parm()
+return str_return
+end function
+
 on _ds.create
 call super::create
 TriggerEvent( this, "constructor" )
@@ -103,4 +110,11 @@ on _ds.destroy
 TriggerEvent( this, "destructor" )
 call super::destroy
 end on
+
+event constructor;
+str_ds_parm _constructor_parms
+_constructor_parms = this.getConstructorParm()
+
+this.dataobject = _constructor_parms.dataobject
+end event
 

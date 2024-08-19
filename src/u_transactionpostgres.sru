@@ -31,15 +31,15 @@ event constructor;call super::constructor;str_u_transaction_parm _constructor_pa
 
 _constructor_parms = this.getConstructorParm()
 
-SQLCA.DBMS = _constructor_parms.db_dbms
-SQLCA.Database = _constructor_parms.db_database
-//SQLCA.UserID = _constructor_parms.db_userid
-//SQLCA.DBPass = _constructor_parms.
-//SQLCA.LogID = _constructor_parms.
-//SQLCA.LogPass = _constructor_parms.
-//SQLCA.ServerName = _constructor_parms.
-SQLCA.DBParm =  _constructor_parms.db_dbparm
-SQLCA.Lock = _constructor_parms.db_lock
-SQLCA.AutoCommit = _constructor_parms.db_autocommit
+this.DBMS = _constructor_parms.db_dbms
+this.Database = _constructor_parms.db_database
+//this.UserID = _constructor_parms.db_userid
+//this.DBPass = _constructor_parms.
+//this.LogID = _constructor_parms.
+//this.LogPass = _constructor_parms.
+//this.ServerName = _constructor_parms.
+this.DBParm =  _constructor_parms.db_dbparm
+this.Lock = _constructor_parms.db_lock
+this.AutoCommit = _constructor_parms.db_autocommit
 end event
 

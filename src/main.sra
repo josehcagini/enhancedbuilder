@@ -37,22 +37,22 @@ public subroutine createstatic ()
 public function integer startapp ()
 end prototypes
 
-public subroutine createstatic ();Try
+public subroutine createstatic ();try
 	_init_ = CREATE __init__
 	__static = _init_._static()
-Catch( PrivateConstructorExcept err)
-	
-End Try
+catch( PrivateConstructorExcept err)
+	MessageBox('', err.GetMessage())
+end try
 end subroutine
 
-public function integer startapp ();Try
+public function integer startapp ();try
 	_app main_app
 	
 	main_app = _init_.class('_app', NULL_OBJ)
 	main_app.startApp()
-Catch( PrivateConstructorExcept err)
-
-End Try
+catch( PrivateConstructorExcept err)
+	MessageBox('', err.GetMessage())
+end try
 
 return 1
 end function
@@ -74,8 +74,11 @@ destroy(error)
 destroy(message)
 end on
 
-event open;this.createStatic()
-
-this.startApp()
+event open;try
+	this.createStatic()
+	this.startApp()
+catch(Throwable thr)
+	MessageBox('', thr.getMessage())
+end try
 end event
 
