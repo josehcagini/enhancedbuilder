@@ -9,10 +9,19 @@ end type
 global _app _app
 
 forward prototypes
-public function integer startapp ()
+public function integer main ()
+private function integer startapp ()
+public function integer teste ()
 end prototypes
 
-public function integer startapp ();string ls_db_dbms
+public function integer main ();
+this.startApp()
+this.teste()
+
+return 1
+end function
+
+private function integer startapp ();string ls_db_dbms
 string ls_db_sgdb
 string ls_db_database
 string ls_db_userid
@@ -30,9 +39,11 @@ ls_db_dsn = __process.env('db_dsn', '')
 ls_db_lock = __process.env('db_lock', '')
 ls_db_autocommit = __process.env('db_autocommit', '')
 
-databasemanager _databasemanager
-u_database _database
+
 try 
+	databasemanager _databasemanager
+	u_database _database
+
 	_databasemanager = __static.getInstance('databasemanager')
 	_databasemanager.setDefaultSGDB(ls_db_sgdb)
 	_database = __static.getInstance(_databasemanager.getDefaultTypeSgdb())
@@ -55,8 +66,15 @@ catch(PrivateConstructorExcept err)
 	MessageBox('', err.GetMessage())
 end try
 
-u_transaction ltrans_teste
-ltrans_teste = _databasemanager.getDefaultTrans()
+return 1
+end function
+
+public function integer teste ();
+databasemanager _databasemanager; _databasemanager = __static.getInstance('databasemanager')
+u_transaction _PgTransaction; _PgTransaction = _databasemanager.getDefaultTrans()
+
+queryBuilder _queryBuilder; _queryBuilder = _databasemanager.queryBuilder() 
+
 
 return 1
 end function

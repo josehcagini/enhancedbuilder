@@ -35,6 +35,7 @@ public subroutine set_process (u_process a_process)
 public function powerobject getinstance (string class)
 public subroutine createinstancemap ()
 public function powerobject get_constructor_parm ()
+public subroutine resetcontructorparm ()
 end prototypes
 
 public subroutine set_object (ref _object a_object);object = a_object
@@ -95,6 +96,9 @@ end subroutine
 
 public function powerobject get_constructor_parm ();return this._constructor_parm.PowerObjectParm
 end function
+
+public subroutine resetcontructorparm ();this._constructor_parm.PowerObjectParm = NULL_OBJ
+end subroutine
 
 on _static.create
 call super::create

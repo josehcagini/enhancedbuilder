@@ -26,6 +26,7 @@ public function console console ()
 public function constructor_parm constructor_parm ()
 public function u_process _process ()
 public function powerobject class (string classname, powerobject str_parm)
+public function powerobject class (string classname)
 end prototypes
 
 public function boolean isprivateconstructor (string as_classname);ClassDefinition classDef
@@ -102,8 +103,13 @@ classname = Lower(classname)
 
 __static.send_constructor_parm(str_parm)
 new_object = CREATE USING classname
+__static.resetContructorParm()
+
 return new_object 
 
+end function
+
+public function powerobject class (string classname);return this.class(classname, NULL_OBJ)
 end function
 
 on __init__.create

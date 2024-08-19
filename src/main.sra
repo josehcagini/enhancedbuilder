@@ -35,6 +35,7 @@ global main main
 forward prototypes
 public subroutine createstatic ()
 public function integer startapp ()
+public function integer main ()
 end prototypes
 
 public subroutine createstatic ();try
@@ -48,10 +49,23 @@ end subroutine
 public function integer startapp ();try
 	_app main_app
 	
-	main_app = _init_.class('_app', NULL_OBJ)
-	main_app.startApp()
+	main_app = __static.getInstance('_app')
+	main_app.main()
 catch( PrivateConstructorExcept err)
 	MessageBox('', err.GetMessage())
+finally
+
+end try
+
+return 1
+end function
+
+public function integer main ();
+try
+	this.createStatic()
+	this.startApp()
+catch(Throwable thr)
+	MessageBox('', thr.getMessage())
 end try
 
 return 1
@@ -75,8 +89,7 @@ destroy(message)
 end on
 
 event open;try
-	this.createStatic()
-	this.startApp()
+	this.main()
 catch(Throwable thr)
 	MessageBox('', thr.getMessage())
 end try

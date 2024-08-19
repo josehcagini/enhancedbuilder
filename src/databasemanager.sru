@@ -16,9 +16,12 @@ STRING SGDB_POSTGRES = 'POSTGRES'
 
 STRING DEFAULT_SGDB
 
-_map transaction_map
-end variables
+STRING CLASS_QUERY_SUPER = 'querybuilder'
+STRING CLASS_QUERY_P0STGRE
 
+_map transaction_map
+
+end variables
 forward prototypes
 public function string gettypesgdb (string a_sgdb)
 public subroutine setdefaultsgdb (string a_type)
@@ -27,6 +30,9 @@ public function databasemanager addtransaction (string a_typesgdb, string key, u
 public function string getdefaultkey ()
 public function u_transaction gettransaction (string a_typesgdb, string key)
 public function u_transaction getdefaulttrans ()
+public function queryBuilder querybuilder ()
+public function queryBuilder querybuilder (string a_typesgdb)
+public function string getclassquery (string a_typesgdb)
 end prototypes
 
 public function string gettypesgdb (string a_sgdb);
@@ -45,7 +51,8 @@ end subroutine
 public function STRING getdefaulttypesgdb ();return this.getTypeSgdb(DEFAULT_SGDB)
 end function
 
-public function databasemanager addtransaction (string a_typesgdb, string key, u_transaction a_trans);transaction_map.Set(Lower(a_typesgdb + key), a_trans)
+public function databasemanager addtransaction (string a_typesgdb, string key, u_transaction a_trans);
+transaction_map.Set(Lower(a_typesgdb + key), a_trans)
 return this
 
 end function
@@ -64,6 +71,30 @@ end function
 public function u_transaction getdefaulttrans ();return this.getTransaction(this.getDefaultTypeSgdb(), this.getDefaultKey())
 end function
 
+public function queryBuilder querybuilder ();
+return this.queryBuilder(this.getDefaultTypeSgdb())
+end function
+
+public function queryBuilder querybuilder (string a_typesgdb);
+queryBuilder newQuery
+
+newQuery = _init_.class(this.getClassQuery(a_typesgdb))
+
+return newQuery
+
+end function
+
+public function string getclassquery (string a_typesgdb);
+string ls_class 
+
+choose case Upper(a_typesgdb)
+	case SGDB_POSTGRES
+		ls_class = CLASS_QUERY_P0STGRE
+end choose
+
+return ls_class
+end function
+
 on databasemanager.create
 call super::create
 TriggerEvent( this, "constructor" )
@@ -75,6 +106,7 @@ call super::destroy
 end on
 
 event constructor; CLASS_POSTGRES = CLASS_SUPER + '_POSTGRES'
+ CLASS_QUERY_P0STGRE = CLASS_QUERY_SUPER + 'postgres'
  
 try
 	transaction_map = _init_.class('_map', NULL_OBJ)
