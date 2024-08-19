@@ -1,0 +1,13 @@
+Save Format v3.0(19990112)
+@begin Libraries
+ "src\\querybuildermodule.pbl" "";
+@end;
+@begin Objects
+ "src\\q_basebuilder.sru" "src\\querybuildermodule.pbl";
+ "src\\q_table.srf" "src\\querybuildermodule.pbl";
+ "src\\q_table.sru" "src\\querybuildermodule.pbl";
+ "src\\q_clause.srf" "src\\querybuildermodule.pbl";
+ "src\\q_collumn.srf" "src\\querybuildermodule.pbl";
+ "src\\q_clause.sru" "src\\querybuildermodule.pbl";
+ "src\\q_collumn.sru" "src\\querybuildermodule.pbl";
+@end;

@@ -19,6 +19,13 @@ end variables
 forward prototypes
 public function str_querybuilder_parm getconstructorparm ()
 public function u_transaction getdefaulttransaction ()
+public function querybuilder _from (string a_table[])
+public function querybuilder _select (string a_select[])
+public function querybuilder _where (string a_where[])
+public function querybuilder _select ()
+public function querybuilder _select (q_collumn aq_collumn[])
+public function querybuilder _from (q_table aq_table[])
+public function querybuilder _where (q_clause aq_clause[])
 end prototypes
 
 public function str_querybuilder_parm getconstructorparm ();
@@ -33,6 +40,34 @@ public function u_transaction getdefaulttransaction ();
 
 databaseManager _databaseManager; _databaseManager = __static.getInstance('databaseManager')
 return _databaseManager.getDefaultTrans()
+end function
+
+public function querybuilder _from (string a_table[]);
+return this
+end function
+
+public function querybuilder _select (string a_select[]);
+return this
+end function
+
+public function querybuilder _where (string a_where[]);
+return this
+end function
+
+public function querybuilder _select ();
+return this
+end function
+
+public function querybuilder _select (q_collumn aq_collumn[]);
+return this
+end function
+
+public function querybuilder _from (q_table aq_table[]);
+return this
+end function
+
+public function querybuilder _where (q_clause aq_clause[]);
+return this
 end function
 
 on querybuilder.create

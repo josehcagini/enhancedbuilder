@@ -1,0 +1,13 @@
+HA$PBExportHeader$_json.srf
+global type _json from function_object
+end type
+
+forward prototypes
+global function _json _json (any props[])
+end prototypes
+
+global function _json _json (any props[]);
+_json newJson
+return newJson
+end function
+
