@@ -1,0 +1,13 @@
+HA$PBExportHeader$fq_table.srf
+global type fq_table from function_object
+end type
+
+forward prototypes
+global function q_table fq_table (string a_table)
+end prototypes
+
+global function q_table fq_table (string a_table);
+q_table newTable
+return newTable
+end function
+

@@ -1,0 +1,13 @@
+HA$PBExportHeader$fq_collumn.srf
+global type fq_collumn from function_object
+end type
+
+forward prototypes
+global function q_collumn fq_collumn (string a_collumn)
+end prototypes
+
+global function q_collumn fq_collumn (string a_collumn);
+q_collumn newCollumn
+return newCollumn
+end function
+

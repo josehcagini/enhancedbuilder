@@ -75,7 +75,9 @@ u_transaction _PgTransaction; _PgTransaction = _databasemanager.getDefaultTrans(
 
 queryBuilder _queryBuilder; _queryBuilder = _databasemanager.queryBuilder() 
 
-_queryBuilder._from({'user'})._where({"name = 'jose'"})._select()
+_queryBuilder._from({''})._where({"name = 'jose'"})._select({''})
+
+_queryBuilder._select({fq_collumn('teste')})
 
 return 1
 end function
