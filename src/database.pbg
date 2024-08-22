@@ -6,12 +6,10 @@ Save Format v3.0(19990112)
  "src\\_ds.sru" "src\\database.pbl";
  "src\\_dson.sru" "src\\database.pbl";
  "src\\u_transactionpostgres.sru" "src\\database.pbl";
- "src\\querybuilderpostgres.sru" "src\\database.pbl";
  "src\\databasemanager.sru" "src\\database.pbl";
  "src\\u_database.sru" "src\\database.pbl";
  "src\\u_transaction.sru" "src\\database.pbl";
  "src\\transactionfactory.sru" "src\\database.pbl";
- "src\\querybuilder.sru" "src\\database.pbl";
  "src\\_dsfactory.sru" "src\\database.pbl";
  "src\\u_database_postgres.sru" "src\\database.pbl";
 @end;
