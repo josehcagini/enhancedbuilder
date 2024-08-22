@@ -75,9 +75,11 @@ u_transaction _PgTransaction; _PgTransaction = _databasemanager.getDefaultTrans(
 
 queryBuilder _queryBuilder; _queryBuilder = _databasemanager.queryBuilder() 
 
-_queryBuilder._from({''})._where({"name = 'jose'"})._select({''})
+_queryBuilder._from({fq_table('user')})._where({fq_clause('').equals('')})._select()
 
-_queryBuilder._select({fq_collumn('teste')})
+_dson ds_teste; ds_teste = _init_.class('_dson')
+
+
 
 return 1
 end function

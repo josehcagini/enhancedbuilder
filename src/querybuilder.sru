@@ -13,19 +13,27 @@ type prototypes
 end prototypes
 
 type variables
-u_transaction defaultTransaction
-end variables
+protected u_transaction defaultTransaction
 
+protected q_table queryTables[]
+protected q_clause queryClauses[]
+protected q_collumn queryColumns[]
+
+
+end variables
 forward prototypes
 public function str_querybuilder_parm getconstructorparm ()
 public function u_transaction getdefaulttransaction ()
-public function querybuilder _from (string a_table[])
 public function querybuilder _select (string a_select[])
 public function querybuilder _where (string a_where[])
 public function querybuilder _select ()
 public function querybuilder _select (q_collumn aq_collumn[])
-public function querybuilder _from (q_table aq_table[])
 public function querybuilder _where (q_clause aq_clause[])
+public function querybuilder _join (q_table a_table, q_clause a_clauses[])
+public function querybuilder _leftjoin (q_table a_table, q_clause a_clauses[])
+public function querybuilder _rightjoin (q_table a_table, q_clause a_clauses[])
+public function querybuilder _from (q_table aq_table)
+public function querybuilder _from (string a_table)
 end prototypes
 
 public function str_querybuilder_parm getconstructorparm ();
@@ -40,10 +48,6 @@ public function u_transaction getdefaulttransaction ();
 
 databaseManager _databaseManager; _databaseManager = __static.getInstance('databaseManager')
 return _databaseManager.getDefaultTrans()
-end function
-
-public function querybuilder _from (string a_table[]);
-return this
 end function
 
 public function querybuilder _select (string a_select[]);
@@ -62,11 +66,27 @@ public function querybuilder _select (q_collumn aq_collumn[]);
 return this
 end function
 
-public function querybuilder _from (q_table aq_table[]);
+public function querybuilder _where (q_clause aq_clause[]);
 return this
 end function
 
-public function querybuilder _where (q_clause aq_clause[]);
+public function querybuilder _join (q_table a_table, q_clause a_clauses[]);
+return this
+end function
+
+public function querybuilder _leftjoin (q_table a_table, q_clause a_clauses[]);
+return this
+end function
+
+public function querybuilder _rightjoin (q_table a_table, q_clause a_clauses[]);
+return this
+end function
+
+public function querybuilder _from (q_table aq_table);
+return this
+end function
+
+public function querybuilder _from (string a_table);
 return this
 end function
 

@@ -8,8 +8,23 @@ global type u_transaction from transaction
 end type
 global u_transaction u_transaction
 
-event constructor;this.autocommit = False
-end event
+type variables
+
+PROTECTED STRING DEFAULT_SCHEMA
+end variables
+
+forward prototypes
+public function string getdefaultschema ()
+public subroutine setdefaultschema (string a_schema)
+end prototypes
+
+public function string getdefaultschema ();
+return DEFAULT_SCHEMA
+end function
+
+public subroutine setdefaultschema (string a_schema);
+DEFAULT_SCHEMA = a_schema
+end subroutine
 
 on u_transaction.create
 call super::create

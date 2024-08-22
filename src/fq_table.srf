@@ -8,6 +8,14 @@ end prototypes
 
 global function q_table fq_table (string a_table);
 q_table newTable
+str_q_table_parm _parms
+
+_parms.table_schema = ''
+_parms.table_name = ''
+_parms.table_alias = ''
+
+newTable = _init_.class('q_table', _parms)
+
 return newTable
 end function
 

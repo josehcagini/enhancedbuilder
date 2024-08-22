@@ -41,5 +41,7 @@ this.Database = _constructor_parms.db_database
 this.DBParm =  _constructor_parms.db_dbparm
 this.Lock = _constructor_parms.db_lock
 this.AutoCommit = _constructor_parms.db_autocommit
+
+this.setDefaultSchema('public')
 end event
 

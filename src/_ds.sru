@@ -9,9 +9,10 @@ end type
 global _ds _ds
 
 type variables
-u_transaction i_transaction
-end variables
+Protected u_transaction i_transaction
 
+Protected str_ds_parm _constructor_parms
+end variables
 forward prototypes
 public function long find (string ls_filter)
 public function any getitem (long row, string col, any default)
@@ -112,9 +113,10 @@ call super::destroy
 end on
 
 event constructor;
-str_ds_parm _constructor_parms
+
 _constructor_parms = this.getConstructorParm()
 
 this.dataobject = _constructor_parms.dataobject
+
 end event
 
