@@ -51,7 +51,7 @@ return ll_rows
 end function
 
 public function long of_retrieve ();
-return this.of_retrieve(_init_.class('_array'))
+return this.of_retrieve(__array())
 end function
 
 event constructor;call super::constructor;

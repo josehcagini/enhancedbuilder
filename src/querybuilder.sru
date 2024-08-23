@@ -46,6 +46,7 @@ public function string tablestostring (q_query a_query)
 public function string wheretostring (q_query a_query)
 public function _dson todatastore ()
 public function string clausetostring (q_clause a_clause)
+public function q_query toquery ()
 end prototypes
 
 public function str_querybuilder_parm getconstructorparm ();
@@ -146,6 +147,10 @@ end function
 
 public function string clausetostring (q_clause a_clause);
 return ''
+end function
+
+public function q_query toquery ();
+return this._query
 end function
 
 on querybuilder.create

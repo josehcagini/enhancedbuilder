@@ -76,13 +76,11 @@ u_transaction _PgTransaction; _PgTransaction = _databasemanager.getDefaultTrans(
 queryBuilder _queryBuilder; _queryBuilder = _databasemanager.queryBuilder() 
 _dson ds1, ds2
 
+
 string ls_sql1
 _queryBuilder._from(fq_table('user'))._select()
 
-ls_sql1 = _queryBuilder.toString()
-ds1 = _queryBuilder.toDatastore()
 
-ds1.of_retrieve()
 
 ds2 = _init_.class('_dson')
 ds2.dataobject = 'd_userteste'
