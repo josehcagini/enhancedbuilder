@@ -5,6 +5,7 @@ end type
 end forward
 
 global type _ds from datastore
+event type long postconstructor ( )
 end type
 global _ds _ds
 
@@ -28,6 +29,10 @@ public function str_ds_parm getconstructorparm ()
 public function _ds createfromsql (string as_sql)
 public function integer settransobject (transaction t)
 end prototypes
+
+event type long postconstructor();
+return 1
+end event
 
 public function long find (string ls_filter);
 return this.find(ls_filter, 0, this.rowCount())
@@ -101,6 +106,7 @@ end function
 
 public function integer settransobject (transaction t);
 integer li_return
+if __object.IsNotValid(t) then return -1
 li_return = datastore::setTransObject(t)
 
 this.i_transaction = t
@@ -119,6 +125,7 @@ call super::destroy
 end on
 
 event constructor;
+ this.event post postconstructor()
 
 _constructor_parms = this.getConstructorParm()
 

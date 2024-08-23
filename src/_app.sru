@@ -82,7 +82,7 @@ _queryBuilder._from(fq_table('user'))._select()
 ls_sql1 = _queryBuilder.toString()
 ds1 = _queryBuilder.toDatastore()
 
-ds1.retrieve()
+ds1.of_retrieve()
 
 ds2 = _init_.class('_dson')
 ds2.dataobject = 'd_userteste'

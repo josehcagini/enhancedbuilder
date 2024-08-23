@@ -18,6 +18,7 @@ protected boolean isObject
 protected integer iterator
 protected integer length = 0
 end variables
+
 forward prototypes
 public function _array push (any element[])
 public function integer length ()
@@ -26,6 +27,7 @@ public function any at (integer index)
 public function any default ()
 public function integer indexof (any element)
 public function _array splice (integer index, integer deletedcount)
+public function any toarray ()
 end prototypes
 
 public function _array push (any element[]);
@@ -85,6 +87,10 @@ for ll_for = index to oldLength
 next
 
 return deletedElements
+end function
+
+public function any toarray ();
+return this.component
 end function
 
 on _array.create

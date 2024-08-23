@@ -32,11 +32,17 @@ newDs_parm.dataobject = a_dataobject
 newDs_parm.transaction = a_trans
 
 newDs = _init_.Class('_dson', newDs_parm)
+newDs.setTransObject(a_trans)
 return newDs
 end function
 
 public function _dson createdson (string a_dataobject);
-return this.createdson(a_dataobject, i_dbmanager.GetDefaultTrans())
+u_transaction _defaultTrans; _defaultTrans = i_dbmanager.GetDefaultTrans()
+
+_dson newDs 
+newDs = this.createdson(a_dataobject, _defaultTrans)
+newDs.setTransObject(_defaultTrans) 
+return newDs
 end function
 
 public function _dson createdson ();
