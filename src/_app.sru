@@ -78,7 +78,7 @@ _dson ds1, ds2
 
 
 string ls_sql1
-_queryBuilder._from(fq_table('user'))._select()
+_queryBuilder._from(__table('user'))._select()
 
 
 

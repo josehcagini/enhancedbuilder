@@ -1,0 +1,13 @@
+HA$PBExportHeader$__clause.srf
+global type __clause from function_object
+end type
+
+forward prototypes
+global function q_clause __clause ()
+end prototypes
+
+global function q_clause __clause ();
+q_clause newClause
+return newClause
+end function
+

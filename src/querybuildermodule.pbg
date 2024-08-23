@@ -6,11 +6,11 @@ Save Format v3.0(19990112)
  "src\\querybuilderpostgres.sru" "src\\querybuildermodule.pbl";
  "src\\q_basebuilder.sru" "src\\querybuildermodule.pbl";
  "src\\q_resulttable.sru" "src\\querybuildermodule.pbl";
- "src\\fq_table.srf" "src\\querybuildermodule.pbl";
- "src\\fq_clause.srf" "src\\querybuildermodule.pbl";
+ "src\\__table.srf" "src\\querybuildermodule.pbl";
  "src\\querybuilder.sru" "src\\querybuildermodule.pbl";
  "src\\q_table.sru" "src\\querybuildermodule.pbl";
- "src\\fq_collumn.srf" "src\\querybuildermodule.pbl";
+ "src\\__clause.srf" "src\\querybuildermodule.pbl";
+ "src\\__collumn.srf" "src\\querybuildermodule.pbl";
  "src\\q_clause.sru" "src\\querybuildermodule.pbl";
  "src\\q_collumn.sru" "src\\querybuildermodule.pbl";
  "src\\q_query.sru" "src\\querybuildermodule.pbl";
