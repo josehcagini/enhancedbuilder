@@ -177,7 +177,7 @@ return querySQL
 end function
 
 public function string columnstostring (q_query a_query);
-string sqlCol = ''
+string sqlCol = " "
 
 sqlCol += this.SQL_SELECT
 
@@ -190,8 +190,8 @@ for index = 1 to queryColumns.length()
 	colAux = queryColumns.at(index)
 	
 	string ls_table
-	if colAux.getName() = '*' then
-		sqlCol += ' ' + colAux.getName() + ', '
+	if colAux.getName() = "*" then
+		sqlCol += " " + colAux.getName() + " , "
 	else
 		if colAux.getTable() <> '' then ls_table = '"' + colAux.getTable() + '".'
 		sqlCol += ls_table + '"' + colAux.getName() + '" as ' + colAux.getAlias() + ', '

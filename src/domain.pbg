@@ -3,6 +3,7 @@ Save Format v3.0(19990112)
  "src\\domain.pbl" "";
 @end;
 @begin Objects
+ "src\\d_userteste.srd" "src\\domain.pbl";
  "src\\d_dsmap.srd" "src\\domain.pbl";
  "src\\d_dummy.srd" "src\\domain.pbl";
 @end;

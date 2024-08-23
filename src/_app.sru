@@ -74,13 +74,20 @@ databasemanager _databasemanager; _databasemanager = __static.getInstance('datab
 u_transaction _PgTransaction; _PgTransaction = _databasemanager.getDefaultTrans()
 
 queryBuilder _queryBuilder; _queryBuilder = _databasemanager.queryBuilder() 
-_dson ds1
+_dson ds1, ds2
 
 string ls_sql1
 _queryBuilder._from(fq_table('user'))._select()
 
 ls_sql1 = _queryBuilder.toString()
 ds1 = _queryBuilder.toDatastore()
+
+ds1.retrieve()
+
+ds2 = _init_.class('_dson')
+ds2.dataobject = 'd_userteste'
+ds2.settransobject(_PgTransaction)
+ds2.retrieve()
 
 return 1
 end function

@@ -18,7 +18,6 @@ forward prototypes
 public function long find (string ls_filter)
 public function any getitem (long row, string col, any default)
 public function string of_describe (string a_string)
-public function integer settransobject (transaction t)
 public function _ds createfromsql (string as_sql, transaction a_trans)
 public function boolean ds_typenumber (string a_type)
 public function boolean ds_typedate (string a_type)
@@ -27,6 +26,7 @@ public function boolean ds_typestring (string a_type)
 public function boolean ds_typetime (string a_type)
 public function str_ds_parm getconstructorparm ()
 public function _ds createfromsql (string as_sql)
+public function integer settransobject (transaction t)
 end prototypes
 
 public function long find (string ls_filter);
@@ -55,15 +55,6 @@ return default
 end function
 
 public function string of_describe (string a_string);return this.describe(a_string)
-end function
-
-public function integer settransobject (transaction t);
-integer li_return
-li_return = datastore::setTransObject(t)
-
-this.i_transaction = t
-
-return li_return
 end function
 
 public function _ds createfromsql (string as_sql, transaction a_trans);
@@ -108,6 +99,15 @@ public function _ds createfromsql (string as_sql);
 return this.createFromSQL(as_sql, i_transaction)
 end function
 
+public function integer settransobject (transaction t);
+integer li_return
+li_return = datastore::setTransObject(t)
+
+this.i_transaction = t
+
+return li_return
+end function
+
 on _ds.create
 call super::create
 TriggerEvent( this, "constructor" )
@@ -122,7 +122,9 @@ event constructor;
 
 _constructor_parms = this.getConstructorParm()
 
-this.dataobject = _constructor_parms.dataobject
+if isValid(_constructor_parms) then
+	this.dataobject = _constructor_parms.dataobject
+end if
 
 end event
 
