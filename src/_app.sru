@@ -74,18 +74,9 @@ databasemanager _databasemanager; _databasemanager = __static.getInstance('datab
 u_transaction _PgTransaction; _PgTransaction = _databasemanager.getDefaultTrans()
 
 queryBuilder _queryBuilder; _queryBuilder = _databasemanager.queryBuilder() 
-_dson ds1, ds2
-
 
 string ls_sql1
-_queryBuilder._from(__table('user'))._select()
-
-
-
-ds2 = _init_.class('_dson')
-ds2.dataobject = 'd_userteste'
-ds2.settransobject(_PgTransaction)
-ds2.retrieve()
+ls_sql1 = __queryBuilder()._from(_queryBuilder._from(__table('user')).toQuery())._select().toString()
 
 return 1
 end function
