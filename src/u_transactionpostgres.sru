@@ -43,5 +43,7 @@ this.Lock = _constructor_parms.db_lock
 this.AutoCommit = _constructor_parms.db_autocommit
 
 this.setDefaultSchema('public')
+
+this.connectTransaction()
 end event
 

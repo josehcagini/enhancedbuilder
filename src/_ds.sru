@@ -13,6 +13,7 @@ Protected u_transaction i_transaction
 
 Protected str_ds_parm _constructor_parms
 end variables
+
 forward prototypes
 public function long find (string ls_filter)
 public function any getitem (long row, string col, any default)
@@ -25,6 +26,7 @@ public function boolean ds_typedatetime (string a_type)
 public function boolean ds_typestring (string a_type)
 public function boolean ds_typetime (string a_type)
 public function str_ds_parm getconstructorparm ()
+public function _ds createfromsql (string as_sql)
 end prototypes
 
 public function long find (string ls_filter);
@@ -100,6 +102,10 @@ public function str_ds_parm getconstructorparm ();
 str_ds_parm str_return
 str_return = __static.get_constructor_parm()
 return str_return
+end function
+
+public function _ds createfromsql (string as_sql);
+return this.createFromSQL(as_sql, i_transaction)
 end function
 
 on _ds.create

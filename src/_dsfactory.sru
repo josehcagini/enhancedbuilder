@@ -11,6 +11,7 @@ global _dsfactory _dsfactory
 type variables
 databaseManager i_dbmanager
 end variables
+
 forward prototypes
 public subroutine createdsmap (ref _ds ads)
 public function _dson createdson (string a_dataobject, u_transaction a_trans)

@@ -74,12 +74,13 @@ databasemanager _databasemanager; _databasemanager = __static.getInstance('datab
 u_transaction _PgTransaction; _PgTransaction = _databasemanager.getDefaultTrans()
 
 queryBuilder _queryBuilder; _queryBuilder = _databasemanager.queryBuilder() 
+_dson ds1
 
-//_queryBuilder._from({fq_table('user')})._where({fq_clause('').equals('')})._select()
+string ls_sql1
+_queryBuilder._from(fq_table('user'))._select()
 
-_dson ds_teste; ds_teste = _init_.class('_dson')
-
-
+ls_sql1 = _queryBuilder.toString()
+ds1 = _queryBuilder.toDatastore()
 
 return 1
 end function

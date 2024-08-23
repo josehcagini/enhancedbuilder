@@ -22,6 +22,7 @@ STRING CLASS_QUERY_P0STGRE
 _map transaction_map
 
 end variables
+
 forward prototypes
 public function string gettypesgdb (string a_sgdb)
 public subroutine setdefaultsgdb (string a_type)
@@ -30,7 +31,7 @@ public function databasemanager addtransaction (string a_typesgdb, string key, u
 public function string getdefaultkey ()
 public function u_transaction gettransaction (string a_typesgdb, string key)
 public function u_transaction getdefaulttrans ()
-public function queryBuilder querybuilder ()
+public function querybuilder querybuilder ()
 public function queryBuilder querybuilder (string a_typesgdb)
 public function string getclassquery (string a_typesgdb)
 end prototypes
@@ -71,8 +72,8 @@ end function
 public function u_transaction getdefaulttrans ();return this.getTransaction(this.getDefaultTypeSgdb(), this.getDefaultKey())
 end function
 
-public function queryBuilder querybuilder ();
-return this.queryBuilder(this.getDefaultTypeSgdb())
+public function querybuilder querybuilder ();
+return this.queryBuilder(DEFAULT_SGDB)
 end function
 
 public function queryBuilder querybuilder (string a_typesgdb);

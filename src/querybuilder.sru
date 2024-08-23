@@ -44,6 +44,8 @@ public function string querytostring (q_query a_query)
 public function string columnstostring (q_query a_query)
 public function string tablestostring (q_query a_query)
 public function string wheretostring (q_query a_query)
+public function _dson todatastore ()
+public function string clausetostring (q_clause a_clause)
 end prototypes
 
 public function str_querybuilder_parm getconstructorparm ();
@@ -137,6 +139,15 @@ string sqlwhere
 return sqlwhere
 end function
 
+public function _dson todatastore ();
+_dson newDatastore
+return newDatastore
+end function
+
+public function string clausetostring (q_clause a_clause);
+return ''
+end function
+
 on querybuilder.create
 call super::create
 TriggerEvent( this, "constructor" )
@@ -155,11 +166,13 @@ this._query = _init_.Class('q_query')
 
 u_transaction receivedTransaction
 if __object._IsValid(_construtor_parms) then
-	if __object.IsNotValid(_construtor_parms.defaulttransaction) then
-		receivedTransaction = this.getDefaultTransaction()
-	else
+	if __object._IsValid(_construtor_parms.defaulttransaction) then
 		receivedTransaction = _construtor_parms.defaulttransaction
+	else
+		receivedTransaction = this.getDefaultTransaction()
 	end if
+else
+	receivedTransaction = this.getDefaultTransaction()
 end if
 
 this.defaultTransaction = receivedTransaction

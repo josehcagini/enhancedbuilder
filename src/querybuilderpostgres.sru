@@ -25,6 +25,7 @@ public function string querytostring (q_query a_query)
 public function string columnstostring (q_query a_query)
 public function string tablestostring (q_query a_query)
 public function string wheretostring (q_query a_query)
+public function _dson todatastore ()
 end prototypes
 
 public function querybuilder _select (q_collumn aq_collumn[]);
@@ -98,7 +99,7 @@ if a_table.getSchema() = '' then
 	ls_schema = '"' + a_table.getSchema() + '".'
 end if
 
-ls_table += ls_schema + + '"' + a_table.getName() + '" as ' + a_table.getAlias()
+ls_table += ls_schema + + '"' + a_table.getName() + '" as "' + a_table.getAlias() + '" '
 ls_table += this.tableClauseToString(a_table)
 
 return ls_table
@@ -159,7 +160,7 @@ string ls_subquery
 ls_subquery = this.queryToString(a_query)
 ls_subquery = ' (' + ls_subquery + ') '
 
-ls_table += ls_subquery + '" as ' + a_query.getAlias()
+ls_table += ls_subquery + '" as "' + a_query.getAlias() + '" '
 ls_table += this.tableClauseToString(a_query)
 
 return ls_table
@@ -189,8 +190,12 @@ for index = 1 to queryColumns.length()
 	colAux = queryColumns.at(index)
 	
 	string ls_table
-	if colAux.getTable() <> '' then ls_table = '"' + colAux.getTable() + '".'
-	sqlCol += ls_table + '"' + colAux.getName() + '" as ' + colAux.getAlias() + ', '
+	if colAux.getName() = '*' then
+		sqlCol += ' ' + colAux.getName() + ', '
+	else
+		if colAux.getTable() <> '' then ls_table = '"' + colAux.getTable() + '".'
+		sqlCol += ls_table + '"' + colAux.getName() + '" as ' + colAux.getAlias() + ', '
+	end if
 next
 
 sqlCol = Left(sqlCol, Len(sqlCol) - 2)
@@ -199,7 +204,7 @@ return sqlCol
 end function
 
 public function string tablestostring (q_query a_query);
-string sqlTable = ''
+string sqlTable = ' '
 
 sqlTable += this.SQL_FROM
 
@@ -225,7 +230,7 @@ for index = 1 to queryTables.length()
 	end if
 next
 
-sqlTable = Left(sqlTable, Len(sqlTable) - 2)
+//sqlTable = Left(sqlTable, Len(sqlTable) - 2)
 
 return sqlTable
 end function
@@ -248,6 +253,15 @@ for index = 1 to a_query.getQueryClauses().length()
 next 
 
 return ls_clause
+end function
+
+public function _dson todatastore ();
+_dsFactory dsFactory; dsFactory = __static.getInstance('_dsFactory')
+_dson newDatastore; newDatastore = dsFactory.createDson()
+
+newDatastore.createFromSQL(this.toString())
+
+return newDatastore
 end function
 
 on querybuilderpostgres.create

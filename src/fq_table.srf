@@ -28,3 +28,4 @@ newTable = _init_.class('q_table', _parms)
 
 return newTable
 end function
+

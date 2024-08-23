@@ -40,6 +40,7 @@ end prototypes
 
 public subroutine createstatic ();try
 	_init_ = CREATE __init__
+	sleep(1)
 	__static = _init_._static()
 catch( PrivateConstructorExcept err)
 	MessageBox('', err.GetMessage())
@@ -62,7 +63,9 @@ end function
 
 public function integer main ();
 try
+	sleep(1)
 	this.createStatic()
+	sleep(1)
 	this.startApp()
 catch(Throwable thr)
 	MessageBox('', thr.getMessage())

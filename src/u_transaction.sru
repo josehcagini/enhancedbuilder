@@ -16,6 +16,7 @@ end variables
 forward prototypes
 public function string getdefaultschema ()
 public subroutine setdefaultschema (string a_schema)
+public function integer connecttransaction ()
 end prototypes
 
 public function string getdefaultschema ();
@@ -25,6 +26,11 @@ end function
 public subroutine setdefaultschema (string a_schema);
 DEFAULT_SCHEMA = a_schema
 end subroutine
+
+public function integer connecttransaction ();
+connect using this;
+return this.sqlcode
+end function
 
 on u_transaction.create
 call super::create
