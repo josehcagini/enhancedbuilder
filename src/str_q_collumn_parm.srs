@@ -2,5 +2,6 @@ HA$PBExportHeader$str_q_collumn_parm.srs
 global type str_q_collumn_parm from structure
 	string		column_name
 	string		column_alias
+	string		column_table
 end type
 

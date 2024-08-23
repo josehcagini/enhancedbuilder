@@ -11,4 +11,5 @@ Save Format v3.0(19990112)
  "src\\console.sru" "src\\util.pbl";
  "src\\_in.srf" "src\\util.pbl";
  "src\\_map.sru" "src\\util.pbl";
+ "src\\_array.sru" "src\\util.pbl";
 @end;

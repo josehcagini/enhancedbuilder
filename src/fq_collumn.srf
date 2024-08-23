@@ -4,10 +4,28 @@ end type
 
 forward prototypes
 global function q_collumn fq_collumn (string a_collumn)
+global function q_collumn fq_collumn (string a_table, string a_collumn)
+global function q_collumn fq_collumn (string a_table, string a_collumn, string a_alias)
 end prototypes
 
 global function q_collumn fq_collumn (string a_collumn);
+return fq_collumn('', a_collumn, a_collumn)
+end function
+
+global function q_collumn fq_collumn (string a_table, string a_collumn);
+return fq_collumn(a_table, a_collumn, a_collumn)
+end function
+
+global function q_collumn fq_collumn (string a_table, string a_collumn, string a_alias);
+str_q_collumn_parm _constructor_parms
 q_collumn newCollumn
+
+_constructor_parms.column_table = a_table
+_constructor_parms.column_name = a_collumn
+_constructor_parms.column_alias = a_alias
+
+newCollumn = _init_.Class('q_collumn', _constructor_parms)
+
 return newCollumn
 end function
 

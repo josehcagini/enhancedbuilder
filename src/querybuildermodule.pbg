@@ -5,6 +5,7 @@ Save Format v3.0(19990112)
 @begin Objects
  "src\\querybuilderpostgres.sru" "src\\querybuildermodule.pbl";
  "src\\q_basebuilder.sru" "src\\querybuildermodule.pbl";
+ "src\\q_resulttable.sru" "src\\querybuildermodule.pbl";
  "src\\fq_table.srf" "src\\querybuildermodule.pbl";
  "src\\fq_clause.srf" "src\\querybuildermodule.pbl";
  "src\\querybuilder.sru" "src\\querybuildermodule.pbl";
@@ -12,4 +13,5 @@ Save Format v3.0(19990112)
  "src\\fq_collumn.srf" "src\\querybuildermodule.pbl";
  "src\\q_clause.sru" "src\\querybuildermodule.pbl";
  "src\\q_collumn.sru" "src\\querybuildermodule.pbl";
+ "src\\q_query.sru" "src\\querybuildermodule.pbl";
 @end;
