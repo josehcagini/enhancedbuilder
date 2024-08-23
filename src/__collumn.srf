@@ -9,11 +9,11 @@ global function q_collumn __collumn (string a_table, string a_collumn, string a_
 end prototypes
 
 global function q_collumn __collumn (string a_collumn);
-return fq_collumn('', a_collumn, a_collumn)
+return __collumn('', a_collumn, a_collumn)
 end function
 
 global function q_collumn __collumn (string a_table, string a_collumn);
-return fq_collumn(a_table, a_collumn, a_collumn)
+return __collumn(a_table, a_collumn, a_collumn)
 end function
 
 global function q_collumn __collumn (string a_table, string a_collumn, string a_alias);

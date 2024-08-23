@@ -9,11 +9,11 @@ global function q_table __table (string a_table, string a_schema, string a_alias
 end prototypes
 
 global function q_table __table (string a_table);
-return fq_table(a_table, '', a_table)
+return __table(a_table, '', a_table)
 end function
 
 global function q_table __table (string a_table, string a_schema);
-return fq_table(a_table, a_schema, a_table)
+return __table(a_table, a_schema, a_table)
 end function
 
 global function q_table __table (string a_table, string a_schema, string a_alias);

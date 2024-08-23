@@ -42,7 +42,7 @@ return this
 end function
 
 public function q_query _select ();
-return this._select({fq_collumn('*')})
+return this._select({__collumn('*')})
 end function
 
 public function q_query _from (q_resulttable aq_table);

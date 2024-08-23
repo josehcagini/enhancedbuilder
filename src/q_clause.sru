@@ -22,6 +22,7 @@ protected _array nested_clauses
 protected u_database _database
 
 end variables
+
 forward prototypes
 public function q_clause equals (string a_value)
 public function str_q_clause_parm getconstructorparm ()
@@ -93,8 +94,8 @@ event constructor;call super::constructor;
 str_q_clause_parm _constructor_parms
 _constructor_parms = this.getConstructorParm()
 
-this.clause_name = fq_collumn(_constructor_parms.clause_table, _constructor_parms.clause_name) 
-this.clause_value = fq_collumn( _constructor_parms.clause_value_table, _constructor_parms.clause_value)
+this.clause_name = __collumn(_constructor_parms.clause_table, _constructor_parms.clause_name) 
+this.clause_value = __collumn( _constructor_parms.clause_value_table, _constructor_parms.clause_value)
 this.clause_operator = _constructor_parms.clause_operator
 
 
