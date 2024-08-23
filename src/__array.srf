@@ -1,1 +1,18 @@
 HA$PBExportHeader$__array.srf
+global type __array from function_object
+end type
+
+forward prototypes
+global function any __array (any components[])
+end prototypes
+
+global function any __array (any components[]);
+str_array_parm _parms
+_parms.components = components
+
+_array newArray
+newArray = _init_.Class('_array', _parms)
+
+return newArray
+end function
+
