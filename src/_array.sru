@@ -28,6 +28,7 @@ public function any default ()
 public function integer indexof (any element)
 public function _array splice (integer index, integer deletedcount)
 public function any toarray ()
+public function str_array_parm getconstructorparm ()
 end prototypes
 
 public function _array push (any element[]);
@@ -93,6 +94,12 @@ public function any toarray ();
 return this.component
 end function
 
+public function str_array_parm getconstructorparm ();
+str_array_parm str_return
+str_return = __static.get_constructor_parm()
+return str_return
+end function
+
 on _array.create
 call super::create
 TriggerEvent( this, "constructor" )
@@ -102,4 +109,16 @@ on _array.destroy
 TriggerEvent( this, "destructor" )
 call super::destroy
 end on
+
+event constructor;
+str_array_parm _constructor_parms
+_constructor_parms = this.getConstructorParm()
+
+if __object._IsValid(_constructor_parms) then
+	if UpperBound(_constructor_parms.components) > 0 then
+		this.component = _constructor_parms.components
+		this.length = UpperBound(this.component)
+	end if
+end if
+end event
 
