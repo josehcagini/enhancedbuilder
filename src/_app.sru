@@ -73,16 +73,13 @@ public function integer teste ();
 databasemanager _databasemanager; _databasemanager = __static.getInstance('databasemanager')
 u_transaction _PgTransaction; _PgTransaction = _databasemanager.getDefaultTrans()
 
-q_query _queryTeste
-
-_queryTeste = CREATE q_query
-
 queryBuilder _queryBuilder; _queryBuilder = _databasemanager.queryBuilder() 
 
 string ls_sql1
-ls_sql1 = __queryBuilder()._from(_queryBuilder._from(__table('user')).toQuery())._select().toString()
+ls_sql1 = __queryBuilder()._from(__queryBuilder()._from(__table('user'))._select().toQuery())._select().toString()
 
 return 1
+
 end function
 
 on _app.create

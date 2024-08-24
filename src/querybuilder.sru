@@ -24,7 +24,6 @@ CONSTANT STRING SQL_WHERE = 'WHERE'
 end variables
 
 forward prototypes
-public function str_querybuilder_parm getconstructorparm ()
 public function u_transaction getdefaulttransaction ()
 public function querybuilder _select (string a_select[])
 public function querybuilder _where (string a_where[])
@@ -37,25 +36,37 @@ public function querybuilder _rightjoin (q_resulttable a_table, q_clause a_claus
 public function querybuilder _from (q_resulttable a_table)
 public function querybuilder _from (string a_table)
 public function string tostring ()
-public function string typequerytostring (q_query a_query)
-public function string typetabletostring (q_table a_table)
-public function string tableclausetostring (q_resulttable a_table)
 public function string querytostring (q_query a_query)
-public function string columnstostring (q_query a_query)
-public function string tablestostring (q_query a_query)
-public function string wheretostring (q_query a_query)
 public function _dson todatastore ()
-public function string clausetostring (q_clause a_clause)
 public function q_query toquery ()
+public function q_query toquery (string a_name)
+public function querybuilder _from (string a_schema, string a_table, string a_alias)
+public function querybuilder _from (string a_schema, string a_table)
+public function querybuilder _select (_array arr_collumns[])
+public function querybuilder _join (string a_schema, string a_table, string a_alias)
+public function querybuilder _join (string a_schema, string a_table)
+public function querybuilder _join (string a_table)
+public function querybuilder _leftjoin (string a_schema, string a_table, string a_alias)
+public function querybuilder _leftjoin (string a_schema, string a_table)
+public function querybuilder _leftjoin (string a_table)
+public function querybuilder _rightjoin (string a_schema, string a_table, string a_alias)
+public function querybuilder _rightjoin (string a_schema, string a_table)
+public function querybuilder _rightjoin (string a_table)
+public function querybuilder _on (q_clause a_clause[])
+public function querybuilder _on (string a_name, string a_operator, string a_value)
+public function querybuilder _and (q_clause a_clause[])
+public function querybuilder _and (string a_name, string a_operator, string a_value)
+public function querybuilder _or (q_clause a_clause[])
+public function querybuilder _or (string a_name, string a_operator, string a_value)
+protected function string wheretostring (q_query a_query)
+protected function string typetabletostring (q_table a_table)
+protected function string clausetostring (q_clause a_clause)
+protected function string columnstostring (q_query a_query)
+protected function str_querybuilder_parm getconstructorparm ()
+protected function string tableclausetostring (q_resulttable a_table)
+protected function string tablestostring (q_query a_query)
+protected function string typequerytostring (q_query a_query)
 end prototypes
-
-public function str_querybuilder_parm getconstructorparm ();
-str_querybuilder_parm str_return
-
-str_return = __static.get_constructor_parm()
-
-return str_return
-end function
 
 public function u_transaction getdefaulttransaction ();
 
@@ -109,35 +120,8 @@ string querySQL
 return querySQL
 end function
 
-public function string typequerytostring (q_query a_query);
-return ''
-end function
-
-public function string typetabletostring (q_table a_table);
-return ''
-end function
-
-public function string tableclausetostring (q_resulttable a_table);
-return ''
-end function
-
 public function string querytostring (q_query a_query);
 return ''
-end function
-
-public function string columnstostring (q_query a_query);
-string sqlCol
-return sqlCol
-end function
-
-public function string tablestostring (q_query a_query);
-string sqlTable
-return sqlTable
-end function
-
-public function string wheretostring (q_query a_query);
-string sqlwhere
-return sqlwhere
 end function
 
 public function _dson todatastore ();
@@ -145,12 +129,125 @@ _dson newDatastore
 return newDatastore
 end function
 
-public function string clausetostring (q_clause a_clause);
+public function q_query toquery ();
+return this.toQuery('tmp')
+end function
+
+public function q_query toquery (string a_name);
+_query.setAlias(a_name)
+
+return this._query
+end function
+
+public function querybuilder _from (string a_schema, string a_table, string a_alias);
+return this
+end function
+
+public function querybuilder _from (string a_schema, string a_table);
+return this
+end function
+
+public function querybuilder _select (_array arr_collumns[]);
+return this
+end function
+
+public function querybuilder _join (string a_schema, string a_table, string a_alias);
+return this
+end function
+
+public function querybuilder _join (string a_schema, string a_table);
+return this
+end function
+
+public function querybuilder _join (string a_table);
+return this
+end function
+
+public function querybuilder _leftjoin (string a_schema, string a_table, string a_alias);
+return this
+end function
+
+public function querybuilder _leftjoin (string a_schema, string a_table);
+return this
+end function
+
+public function querybuilder _leftjoin (string a_table);
+return this
+end function
+
+public function querybuilder _rightjoin (string a_schema, string a_table, string a_alias);
+return this
+end function
+
+public function querybuilder _rightjoin (string a_schema, string a_table);
+return this
+end function
+
+public function querybuilder _rightjoin (string a_table);
+return this
+end function
+
+public function querybuilder _on (q_clause a_clause[]);
+return this
+end function
+
+public function querybuilder _on (string a_name, string a_operator, string a_value);
+return this
+end function
+
+public function querybuilder _and (q_clause a_clause[]);
+return this
+end function
+
+public function querybuilder _and (string a_name, string a_operator, string a_value);
+return this
+end function
+
+public function querybuilder _or (q_clause a_clause[]);
+return this
+end function
+
+public function querybuilder _or (string a_name, string a_operator, string a_value);
+return this
+end function
+
+protected function string wheretostring (q_query a_query);
+string sqlwhere
+return sqlwhere
+end function
+
+protected function string typetabletostring (q_table a_table);
 return ''
 end function
 
-public function q_query toquery ();
-return this._query
+protected function string clausetostring (q_clause a_clause);
+return ''
+end function
+
+protected function string columnstostring (q_query a_query);
+string sqlCol
+return sqlCol
+end function
+
+protected function str_querybuilder_parm getconstructorparm ();
+str_querybuilder_parm str_return
+
+str_return = __static.get_constructor_parm()
+
+return str_return
+end function
+
+protected function string tableclausetostring (q_resulttable a_table);
+return ''
+end function
+
+protected function string tablestostring (q_query a_query);
+string sqlTable
+return sqlTable
+end function
+
+protected function string typequerytostring (q_query a_query);
+return ''
 end function
 
 on querybuilder.create

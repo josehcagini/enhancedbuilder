@@ -89,7 +89,6 @@ end function
 public function string typetabletostring (q_table a_table);
 string ls_table = ' '
 
-
 if a_table.getJoinType() <> 'from' then
 	ls_table += a_table.getJoinType()
 end if
@@ -99,27 +98,29 @@ if a_table.getSchema() = '' then
 	ls_schema = '"' + a_table.getSchema() + '".'
 end if
 
-ls_table += ls_schema + + '"' + a_table.getName() + '" as "' + a_table.getAlias() + '" '
+ls_table += ls_schema + + '"' + a_table.getName() + '" as "' + a_table.getAlias() + '" ~r~n'
 ls_table += this.tableClauseToString(a_table)
 
 return ls_table
 end function
 
 public function string tableclausetostring (q_resulttable a_table);
-string ls_clause = ' '
+if __object.IsNotValid(a_table.getClauses()) then return ' '
+if a_table.getClauses().length() = 0 then return ' '
 
+string ls_clause = ' ~t on ~r~n'
 integer index
 for index = 1 to a_table.getClauses().length()
 	q_clause clause_tmp
 	clause_tmp = a_table.getClauses().at(index)
-	
+	ls_clause += '~t'
 	if index > 1 then
 		ls_clause += clause_tmp.getLogicalOperator()
 	end if
 
 	string clause_response
 	clause_response = this.clauseToString(clause_tmp)
-	ls_clause += ' ( ' + clause_response + ' ) '	
+	ls_clause += ' ( ' + clause_response + ' ) ~r~n'	
 next 
 
 return ls_clause
@@ -160,8 +161,11 @@ string ls_subquery
 ls_subquery = this.queryToString(a_query)
 ls_subquery = ' (' + ls_subquery + ') '
 
-ls_table += ls_subquery + '" as "' + a_query.getAlias() + '" '
-ls_table += this.tableClauseToString(a_query)
+ls_table += ls_subquery + ' as "' + a_query.getAlias() + '" ~r~n'
+
+if a_query.getJoinType() <> 'from' then
+	ls_table += this.tableClauseToString(a_query)
+end if
 
 return ls_table
 end function
@@ -179,7 +183,7 @@ end function
 public function string columnstostring (q_query a_query);
 string sqlCol = " "
 
-sqlCol += this.SQL_SELECT
+sqlCol += this.SQL_SELECT + " ~r~n"
 
 _array queryColumns 
 queryColumns = a_query.getQueryCollumns()
@@ -189,16 +193,18 @@ for index = 1 to queryColumns.length()
 	q_Collumn colAux
 	colAux = queryColumns.at(index)
 	
+	sqlCol += '~t'
+	
 	string ls_table
 	if colAux.getName() = "*" then
-		sqlCol += " " + colAux.getName() + " , "
+		sqlCol += " " + colAux.getName() + " ~r~n"
 	else
 		if colAux.getTable() <> '' then ls_table = '"' + colAux.getTable() + '".'
-		sqlCol += ls_table + '"' + colAux.getName() + '" as ' + colAux.getAlias() + ', '
+		sqlCol += ls_table + '"' + colAux.getName() + '" as ' + colAux.getAlias()
+		if index = queryColumns.length() then  sqlCol += + ', '
+		sqlCol += '~r~n'
 	end if
 next
-
-sqlCol = Left(sqlCol, Len(sqlCol) - 2)
 
 return sqlCol
 end function
@@ -206,13 +212,14 @@ end function
 public function string tablestostring (q_query a_query);
 string sqlTable = ' '
 
-sqlTable += this.SQL_FROM
+sqlTable += this.SQL_FROM + '~r~n'
 
 _array queryTables 
 queryTables = a_query.getQueryTables()
 
 long index
 for index = 1 to queryTables.length()
+	sqlTable += '~t'
 	q_resultTable q_tmp
 	q_tmp = queryTables.at(index)
 	if q_tmp.ClassName() = 'q_table' then
@@ -228,6 +235,7 @@ for index = 1 to queryTables.length()
 		ls_tableAux = this.typeQueryToString(queryAux)
 		sqlTable += ls_tableAux
 	end if
+	sqlTable += '~r~n'
 next
 
 //sqlTable = Left(sqlTable, Len(sqlTable) - 2)

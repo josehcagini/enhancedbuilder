@@ -21,6 +21,7 @@ public function q_resulttable joinclauses (q_clause a_clauses[])
 public function string getjointype ()
 public function _array getclauses ()
 public function string getalias ()
+public subroutine setalias (string a_alias)
 end prototypes
 
 public function q_resulttable jointype (string a_type);
@@ -44,6 +45,10 @@ end function
 public function string getalias ();
 return this.table_alias
 end function
+
+public subroutine setalias (string a_alias);
+this.table_alias = a_alias
+end subroutine
 
 on q_resulttable.create
 call super::create
