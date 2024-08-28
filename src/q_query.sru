@@ -26,6 +26,7 @@ public function q_query _rightjoin (q_resulttable a_table, q_clause a_clauses[])
 public function _array getquerycollumns ()
 public function _array getquerytables ()
 public function _array getqueryclauses ()
+public function q_query _on (q_clause a_clauses[])
 end prototypes
 
 public function q_query _select (q_collumn aq_collumn[]);
@@ -54,7 +55,7 @@ end function
 
 public function q_query _join (q_resulttable a_table, q_clause a_clauses[]);
 a_table.joinType('inner join')
-a_table.joinClauses(a_clauses)
+if UpperBound(a_clauses) > 0 then a_table.joinClauses(a_clauses)
 
 queryTables.push({a_table})
 
@@ -63,7 +64,7 @@ end function
 
 public function q_query _leftjoin (q_resulttable a_table, q_clause a_clauses[]);
 a_table.joinType('left join')
-a_table.joinClauses(a_clauses)
+if UpperBound(a_clauses) > 0 then a_table.joinClauses(a_clauses)
 
 queryTables.push({a_table})
 
@@ -72,7 +73,7 @@ end function
 
 public function q_query _rightjoin (q_resulttable a_table, q_clause a_clauses[]);
 a_table.joinType('right join')
-a_table.joinClauses(a_clauses)
+if UpperBound(a_clauses) > 0 then a_table.joinClauses(a_clauses)
 
 queryTables.push({a_table})
 
@@ -89,6 +90,14 @@ end function
 
 public function _array getqueryclauses ();
 return this.queryClauses
+end function
+
+public function q_query _on (q_clause a_clauses[]);
+q_table tableAux
+tableAux = queryTables.at(queryTables.length())
+tableAux.joinClauses(a_clauses)
+
+return this
 end function
 
 on q_query.create

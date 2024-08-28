@@ -26,6 +26,20 @@ public function string columnstostring (q_query a_query)
 public function string tablestostring (q_query a_query)
 public function string wheretostring (q_query a_query)
 public function _dson todatastore ()
+public function querybuilder _from (string a_schema, string a_table, string a_alias)
+public function querybuilder _from (string a_schema, string a_table)
+public function querybuilder _from (string a_table)
+public function querybuilder _join (string a_schema, string a_table, string a_alias)
+public function querybuilder _join (string a_schema, string a_table)
+public function querybuilder _join (string a_table)
+public function querybuilder _leftjoin (string a_schema, string a_table, string a_alias)
+public function querybuilder _leftjoin (string a_schema, string a_table)
+public function querybuilder _leftjoin (string a_table)
+public function querybuilder _on (q_clause a_clause[])
+public function querybuilder _rightjoin (string a_schema, string a_table, string a_alias)
+public function querybuilder _rightjoin (string a_schema, string a_table)
+public function querybuilder _rightjoin (string a_table)
+public function querybuilder _on (string a_name, string a_operator, string a_value)
 end prototypes
 
 public function querybuilder _select (q_collumn aq_collumn[]);
@@ -52,6 +66,8 @@ return querySQL
 end function
 
 public function querybuilder _from (q_resulttable a_table);
+this.setLastOperation('_from')
+
 if a_table.className() = 'q_table' then
 	if a_table.dynamic getSchema() = '' then a_table.dynamic setSchema(defaultTransaction.getDefaultSchema())
 end if
@@ -61,6 +77,8 @@ return this
 end function
 
 public function querybuilder _join (q_resulttable a_table, q_clause a_clauses[]);
+this.setLastOperation('_join')
+
 if a_table.className() = 'q_table' then
 	if a_table.dynamic getSchema() = '' then a_table.dynamic setSchema(defaultTransaction.getDefaultSchema())
 end if
@@ -70,6 +88,8 @@ return this
 end function
 
 public function querybuilder _leftjoin (q_resulttable a_table, q_clause a_clauses[]);
+this.setLastOperation('_leftjoin')
+
 if a_table.className() = 'q_table' then
 	if a_table.dynamic getSchema() = '' then a_table.dynamic setSchema(defaultTransaction.getDefaultSchema())
 end if
@@ -270,6 +290,71 @@ _dson newDatastore; newDatastore = dsFactory.createDson()
 newDatastore.createFromSQL(this.toString())
 
 return newDatastore
+end function
+
+public function querybuilder _from (string a_schema, string a_table, string a_alias);
+return this._from(__table(a_schema, a_table, a_alias))
+
+end function
+
+public function querybuilder _from (string a_schema, string a_table);
+return this._from(a_schema, a_table, a_table)
+end function
+
+public function querybuilder _from (string a_table);
+return this._from('', a_table)
+end function
+
+public function querybuilder _join (string a_schema, string a_table, string a_alias);
+q_clause null_clauses[]
+return this._join(__table(a_schema, a_table, a_alias), null_clauses)
+
+end function
+
+public function querybuilder _join (string a_schema, string a_table);
+return this._join(a_schema, a_table, a_table)
+end function
+
+public function querybuilder _join (string a_table);
+return this._join('', a_table)
+end function
+
+public function querybuilder _leftjoin (string a_schema, string a_table, string a_alias);
+q_clause null_clauses[]
+return this._leftjoin(__table(a_schema, a_table, a_alias), null_clauses)
+end function
+
+public function querybuilder _leftjoin (string a_schema, string a_table);
+return this._leftjoin(a_schema, a_table, a_table)
+end function
+
+public function querybuilder _leftjoin (string a_table);
+return this._leftjoin('', a_table)
+end function
+
+public function querybuilder _on (q_clause a_clause[]);
+if _in(this.lastOperation, fromOperation) then
+	this._query._on(a_clause)
+end if
+
+return this
+end function
+
+public function querybuilder _rightjoin (string a_schema, string a_table, string a_alias);
+q_clause null_clauses[]
+return this._rightjoin(__table(a_schema, a_table, a_alias), null_clauses)
+end function
+
+public function querybuilder _rightjoin (string a_schema, string a_table);
+return this._rightjoin(a_schema, a_table, a_table)
+end function
+
+public function querybuilder _rightjoin (string a_table);
+return this._rightjoin('', a_table)
+end function
+
+public function querybuilder _on (string a_name, string a_operator, string a_value);
+return this._on({__clause()})
 end function
 
 on querybuilderpostgres.create

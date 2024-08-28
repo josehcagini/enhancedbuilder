@@ -21,8 +21,12 @@ protected q_query _query
 CONSTANT STRING SQL_SELECT = 'SELECT'
 CONSTANT STRING SQL_FROM = 'FROM'
 CONSTANT STRING SQL_WHERE = 'WHERE'
-end variables
 
+protected string lastOperation
+
+protected string fromOperation[] = {'_from', '_leftjoin', '_rightjoin'}
+protected string whereOperation[] = {'_on', '_where'}
+end variables
 forward prototypes
 public function u_transaction getdefaulttransaction ()
 public function querybuilder _select (string a_select[])
@@ -66,6 +70,7 @@ protected function str_querybuilder_parm getconstructorparm ()
 protected function string tableclausetostring (q_resulttable a_table)
 protected function string tablestostring (q_query a_query)
 protected function string typequerytostring (q_query a_query)
+public subroutine setlastoperation (string a_operation)
 end prototypes
 
 public function u_transaction getdefaulttransaction ();
@@ -249,6 +254,10 @@ end function
 protected function string typequerytostring (q_query a_query);
 return ''
 end function
+
+public subroutine setlastoperation (string a_operation);
+this.lastOperation = a_operation
+end subroutine
 
 on querybuilder.create
 call super::create
