@@ -1,10 +1,10 @@
 HA$PBExportHeader$_array.sru
 forward
-global type _array from nonvisualobject
+global type _array from ancobject
 end type
 end forward
 
-global type _array from nonvisualobject
+global type _array from ancobject
 end type
 global _array _array
 
@@ -66,11 +66,11 @@ return defaultReturn
 end function
 
 public function integer indexof (any element);
-integer index
-
-
-
-return index
+Long index
+For index = 1 To This.length()
+	If This.Component[index] = element Then Return index
+Next
+return -1
 end function
 
 public function _array splice (integer index, integer deletedcount);
@@ -78,14 +78,36 @@ _array deletedElements
 
 deletedElements = _init_.class('_array')
 
-integer ll_for
-integer oldLength 
-oldLength = this.length
-for ll_for = index to oldLength
-	deletedElements.push(this.component[index])
-	this.component[index] = this.component[index + 1]
+Long oldLength 
+oldLength = this.length()
+
+Long ll_loop, ll_deletedLoop
+ll_loop = index
+ll_deletedLoop = deletedcount
+Do
+	If oldLength < ll_loop Then Exit
+	ll_deletedLoop -= 1
+	deletedElements.push(this.component[ll_loop])
+	SetNull(this.component[ll_loop])
 	this.length -= 1
-next
+	ll_loop += 1
+Loop While ll_deletedLoop > 0
+
+any la_newComponent[]
+
+Long ll_For
+For ll_For = 1 To index - 1
+	la_newComponent[ll_For] = this.Component[ll_For]
+Next
+
+ll_loop = index
+Do While oldLength >= ll_loop + deletedcount
+	la_newComponent[ll_Loop] = this.component[ll_loop + deletedcount]
+	SetNull(this.component[ll_loop + deletedcount])
+	ll_loop += 1 
+Loop
+
+this.component = la_newComponent
 
 return deletedElements
 end function

@@ -354,7 +354,7 @@ return this._rightjoin('', a_table)
 end function
 
 public function querybuilder _on (string a_name, string a_operator, string a_value);
-return this._on({__clause()})
+return this._on({__clause('', a_name, a_operator, '', a_value)})
 end function
 
 on querybuilderpostgres.create
