@@ -1,0 +1,11 @@
+HA$PBExportHeader$rootdirname.srf
+global type rootdirname from function_object
+end type
+
+forward prototypes
+global function string rootdirname ()
+end prototypes
+
+global function string rootdirname ();return getCurrentDirectory()
+end function
+

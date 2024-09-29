@@ -1,7 +1,0 @@
-﻿$PBExportHeader$str_q_table_parm.srs
-global type str_q_table_parm from structure
-	string		table_name
-	string		table_schema
-	string		table_alias
-end type
-

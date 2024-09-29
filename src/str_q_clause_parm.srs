@@ -1,0 +1,9 @@
+HA$PBExportHeader$str_q_clause_parm.srs
+global type str_q_clause_parm from structure
+	string		clause_name
+	string		clause_operator
+	string		clause_value
+	string		clause_table
+	string		clause_value_table
+end type
+

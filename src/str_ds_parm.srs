@@ -1,0 +1,6 @@
+HA$PBExportHeader$str_ds_parm.srs
+global type str_ds_parm from structure
+	string		dataobject
+	u_transaction		transaction
+end type
+

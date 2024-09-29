@@ -1,0 +1,14 @@
+HA$PBExportHeader$__querybuilder.srf
+global type __querybuilder from function_object
+end type
+
+forward prototypes
+global function querybuilder __querybuilder ()
+end prototypes
+
+global function querybuilder __querybuilder ();
+databasemanager _databasemanager; _databasemanager = __static.getInstance('databasemanager')
+
+return _databasemanager.queryBuilder() 
+end function
+
