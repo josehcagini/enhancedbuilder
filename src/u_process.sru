@@ -44,6 +44,9 @@ end on
 event constructor;
 string ls_dotEnvPath
 ls_dotEnvPath = rootDirName() + '\.env.ini'
+
+If Not FileExists(ls_dotEnvPath) Then MessageBox('', '.env file not found')
+
 this.setDotEnvFilePath(ls_dotEnvPath)
 end event
 
