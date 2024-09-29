@@ -1,0 +1,18 @@
+﻿$PBExportHeader$_returnarray.srf
+global type _returnarray from function_object
+end type
+
+forward prototypes
+global function any _returnarray (any arg)
+end prototypes
+
+global function any _returnarray (any arg);
+if className(arg) = '_array'then
+	_array arr
+	arr = arg
+	return arr.ToArray()
+else
+	return arg
+end if
+end function
+

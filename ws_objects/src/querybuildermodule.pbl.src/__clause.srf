@@ -1,0 +1,24 @@
+﻿$PBExportHeader$__clause.srf
+global type __clause from function_object
+end type
+
+forward prototypes
+global function q_clause __clause (string a_table, string a_name, string a_operator, string a_value_table, string a_value)
+end prototypes
+
+global function q_clause __clause (string a_table, string a_name, string a_operator, string a_value_table, string a_value);
+str_q_clause_parm _parms
+
+_parms.clause_table = a_table
+_parms.clause_name = a_name
+_parms.clause_operator = a_operator
+_parms.clause_value_table = a_value_table
+_parms.clause_value = a_value
+
+q_clause newClause
+newClause = _init_.class('q_clause', _parms)
+
+return newClause
+
+end function
+

@@ -1,0 +1,5 @@
+﻿$PBExportHeader$str_querybuilder_parm.srs
+global type str_querybuilder_parm from structure
+	u_transaction		defaulttransaction
+end type
+
