@@ -1,5 +1,0 @@
-HA$PBExportHeader$str_array_parm.srs
-global type str_array_parm from structure
-	any		components[]
-end type
-
